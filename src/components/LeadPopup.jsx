@@ -48,7 +48,7 @@ export default function LeadPopup({ business, isOpen, onClose }) {
     setStatus({ type: '', message: '' });
 
     const API_URL = import.meta.env.VITE_API_URL;
-
+    console.log('API URL:', import.meta.env.VITE_API_URL);
     const response = await fetch(`${API_URL}/api/leads`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
