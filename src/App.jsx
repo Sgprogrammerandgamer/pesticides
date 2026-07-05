@@ -52,7 +52,7 @@ export default function App() {
   {
     title: 'Pre-Construction Termite Control Treatment',
     text: 'Preventive anti-termite treatment before construction to reduce future infestation risks and protect the property from the ground up.',
-    image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/e6fc080fc77d2c2456fc092928bb2f7a1262c082.jpg',
+    image: 'https://media.discordapp.net/attachments/1213571833333424128/1523324288931729478/images.jpg?ex=6a4bb1cc&is=6a4a604c&hm=8b5b1dd7226b02efca7c938c43fcdb731b952ecf326b0abda739dbc4762156db&=&format=webp&width=1384&height=884',
     alt: 'Pre-construction termite control service image'
   },
   {
@@ -70,13 +70,13 @@ export default function App() {
   {
     title: 'Mosquito Control Treatment',
     text: 'Source reduction and mosquito control treatment to improve hygiene, reduce breeding, and protect indoor and outdoor spaces.',
-    image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/346393ddea01eb1fdd4a651c1aaf201858cfdaf8.jpg',
+    image: 'https://media.discordapp.net/attachments/1213571833333424128/1523324561259626557/imagesrf.jpg?ex=6a4bb20d&is=6a4a608d&hm=3fd6dca0099566e9f30818882024c3159aa0dea476ac40f52574466fc325fa72&=&format=webp&width=1340&height=916',
     alt: 'General pest control promotional service image'
   },
   {
     title: 'Bedbug Control Treatment',
     text: 'Systematic bed bug treatment for mattresses, furniture, corners, cracks, and hidden infestation areas in residential and commercial spaces.',
-    image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/346393ddea01eb1fdd4a651c1aaf201858cfdaf8.jpg',
+    image: 'https://media.discordapp.net/attachments/1213571833333424128/1523324785864740994/household-pest-control-service.jpg?ex=6a4bb242&is=6a4a60c2&hm=0c1851fee0b564fb00107f5190d6ac29164a344c20b9c5f653c5168aee3d4c85&=&format=webp&width=1472&height=982',
     alt: 'General pest control service visual for bed bug treatment'
   }
 ],

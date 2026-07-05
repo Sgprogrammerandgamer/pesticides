@@ -9,13 +9,13 @@ export default function ProcessSection({ business }) {
     {
       title: 'Assessment',
       image:
-        'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/188bda424647b8f2f9ed44c1fa613f91a8af3350.jpg',
+        'https://media.discordapp.net/attachments/1213571833333424128/1523325044049051779/images9.jpg?ex=6a4bb280&is=6a4a6100&hm=3274a21318ad94d109be92666ab38d65c0ab4ff2435cf2fc2982d71787f79180&=&format=webp&width=1044&height=766',
       alt: 'Technician checking pest entry points during assessment'
     },
     {
       title: 'Customized Plan',
       image:
-        'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/188bda424647b8f2f9ed44c1fa613f91a8af3350.jpg',
+        'https://media.discordapp.net/attachments/1213571833333424128/1523325334186102864/wfwe.jpg?ex=6a4bb2c5&is=6a4a6145&hm=274485d2ac5ca2bba229ef054b43a9c4d13bf3ecc93e43845214deb3b88fc2dc&=&format=webp&width=1358&height=904',
       alt: 'Pest control planning and inspection process'
     },
     {
@@ -27,13 +27,13 @@ export default function ProcessSection({ business }) {
     {
       title: 'Post-Treatment Guidance',
       image:
-        'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/398c3a1cbc5821efbd820ac46b2eda554f08bdc7.jpg',
+        'https://media.discordapp.net/attachments/1213571833333424128/1523325726156263594/images12.jpg?ex=6a4bb323&is=6a4a61a3&hm=fbfafa7ee13db0e4f81c2a9953da7b22126be48e182a80c9cbd67ed466bccdcc&=&format=webp&width=894&height=894',
       alt: 'Professional pest treatment service in a home interior'
     },
     {
       title: 'Follow-up',
       image:
-        'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/188bda424647b8f2f9ed44c1fa613f91a8af3350.jpg',
+        'https://media.discordapp.net/attachments/1213571833333424128/1523325947678294197/rvger.jpg?ex=6a4bb357&is=6a4a61d7&hm=09595fa26e6762f988c9698767c7cb9f565826a5989ea716b257df24a154cabf&=&format=webp&width=1094&height=730',
       alt: 'Pest control follow-up inspection by technician'
     }
   ];
