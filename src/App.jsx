@@ -189,8 +189,8 @@ export default function App() {
       <WhatsAppFloat business={business} />
       <LeadPopup
         business={business}
-        isOpen={isPopupOpen}
-        onClose={() => setIsPopupOpen(false)}
+        isOpen={isLeadPopupOpen}
+        onClose={() => setIsLeadPopupOpen(false)}
       />
     </>
   );
