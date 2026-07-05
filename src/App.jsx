@@ -163,7 +163,15 @@ export default function App() {
     }),
     []
   );
+  const [isLeadPopupOpen, setIsLeadPopupOpen] = useState(false);
 
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setIsLeadPopupOpen(true);
+  }, 800);
+
+  return () => clearTimeout(timer);
+}, []);
   return (
     <>
       <Header
@@ -192,6 +200,7 @@ export default function App() {
         isOpen={isLeadPopupOpen}
         onClose={() => setIsLeadPopupOpen(false)}
       />
+      
     </>
   );
 }
