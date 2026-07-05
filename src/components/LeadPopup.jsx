@@ -33,51 +33,59 @@ export default function LeadPopup({ business, isOpen, onClose }) {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!form.consent) {
-      setStatus({
-        type: 'error',
-        message: 'Please confirm consent before submitting the form.'
-      });
-      return;
+  if (!form.consent) {
+    setStatus({
+      type: 'error',
+      message: 'Please confirm consent before submitting the form.'
+    });
+    return;
+  }
+
+  try {
+    setLoading(true);
+    setStatus({ type: '', message: '' });
+
+    const API_URL = import.meta.env.VITE_API_URL;
+
+    const response = await fetch(`${API_URL}/api/leads`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...form,
+        source: 'website-popup',
+        consentText: 'I agree to be contacted regarding pest control services.'
+      })
+    });
+
+    const contentType = response.headers.get('content-type');
+
+    if (!contentType || !contentType.includes('application/json')) {
+      const text = await response.text();
+      throw new Error(`Expected JSON but got: ${text.slice(0, 120)}`);
     }
 
-    try {
-      setLoading(true);
-      setStatus({ type: '', message: '' });
+    const data = await response.json();
 
-      const response = await fetch(`${business.VITE_API_URL}/api/leads`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...form,
-          source: 'website-popup',
-          consentText: 'I agree to be contacted regarding pest control services.'
-        })
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to submit form');
-      }
-
-      setStatus({
-        type: 'success',
-        message: 'Thank you. Your request has been submitted successfully.'
-      });
-      setForm(initialState);
-    } catch (error) {
-      setStatus({
-        type: 'error',
-        message: error.message || 'Something went wrong. Please try again.'
-      });
-    } finally {
-      setLoading(false);
+    if (!response.ok) {
+      throw new Error(data.message || 'Failed to submit form');
     }
-  };
 
+    setStatus({
+      type: 'success',
+      message: 'Thank you. Your request has been submitted successfully.'
+    });
+    setForm(initialState);
+  } catch (error) {
+    setStatus({
+      type: 'error',
+      message: error.message || 'Something went wrong. Please try again.'
+    });
+  } finally {
+    setLoading(false);
+  }
+};
   return (
     <div className="popup-overlay" role="dialog" aria-modal="true" aria-label="Get free pest control quote">
       <div className="popup-card">
