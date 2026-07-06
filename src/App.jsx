@@ -20,6 +20,11 @@ export default function App() {
   const [theme, setTheme] = useState('light');
 
   useEffect(() => {
+    const timer = setTimeout(() => setIsPopupOpen(true), 900);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
@@ -42,44 +47,46 @@ export default function App() {
       serviceArea: 'Noida, Gurgaon, Delhi NCR and nearby service areas',
       apiBaseUrl: 'http://localhost:5000',
       copyright: '© 2026 All Rights Reserved | Hygiene Pest Control Services',
+      quickAssistBg:
+        'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1400&q=80',
       services: [
-  {
-    title: 'Termite Control Treatment',
-    text: 'Professional termite inspection and treatment to protect wooden structures, walls, furniture, and foundations from long-term damage.',
-    image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/e6fc080fc77d2c2456fc092928bb2f7a1262c082.jpg',
-    alt: 'Technician treating a termite bait station outdoors'
-  },
-  {
-    title: 'Pre-Construction Termite Control Treatment',
-    text: 'Preventive anti-termite treatment before construction to reduce future infestation risks and protect the property from the ground up.',
-    image: 'https://media.discordapp.net/attachments/1213571833333424128/1523324288931729478/images.jpg?ex=6a4bb1cc&is=6a4a604c&hm=8b5b1dd7226b02efca7c938c43fcdb731b952ecf326b0abda739dbc4762156db&=&format=webp&width=1384&height=884',
-    alt: 'Pre-construction termite control service image'
-  },
-  {
-    title: 'Cockroach Control Treatment',
-    text: 'Targeted cockroach treatment for kitchens, washrooms, cabinets, drains, and hidden breeding zones using safe approved methods.',
-    image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/19490f0514b8afb27f2406b3c860f9ddcd229b88.jpg',
-    alt: 'Cockroach control product displayed in a kitchen setting'
-  },
-  {
-    title: 'Rodent Control Treatment',
-    text: 'Inspection-led rodent management for homes, offices, shops, and warehouses with control planning for entry points and infestation zones.',
-    image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/c35c0872bfa9451f7de60cc667ec006756df049c.jpg',
-    alt: 'Technician servicing a rodent bait station near a building wall'
-  },
-  {
-    title: 'Mosquito Control Treatment',
-    text: 'Source reduction and mosquito control treatment to improve hygiene, reduce breeding, and protect indoor and outdoor spaces.',
-    image: 'https://media.discordapp.net/attachments/1213571833333424128/1523324561259626557/imagesrf.jpg?ex=6a4bb20d&is=6a4a608d&hm=3fd6dca0099566e9f30818882024c3159aa0dea476ac40f52574466fc325fa72&=&format=webp&width=1340&height=916',
-    alt: 'General pest control promotional service image'
-  },
-  {
-    title: 'Bedbug Control Treatment',
-    text: 'Systematic bed bug treatment for mattresses, furniture, corners, cracks, and hidden infestation areas in residential and commercial spaces.',
-    image: 'https://media.discordapp.net/attachments/1213571833333424128/1523324785864740994/household-pest-control-service.jpg?ex=6a4bb242&is=6a4a60c2&hm=0c1851fee0b564fb00107f5190d6ac29164a344c20b9c5f653c5168aee3d4c85&=&format=webp&width=1472&height=982',
-    alt: 'General pest control service visual for bed bug treatment'
-  }
-],
+        {
+          title: 'Termite Control Treatment',
+          text: 'Professional termite inspection and treatment to protect wooden structures, walls, furniture, and foundations from long-term damage.',
+          image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/e6fc080fc77d2c2456fc092928bb2f7a1262c082.jpg',
+          alt: 'Technician treating a termite bait station outdoors'
+        },
+        {
+          title: 'Pre-Construction Termite Control Treatment',
+          text: 'Preventive anti-termite treatment before construction to reduce future infestation risks and protect the property from the ground up.',
+          image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/e6fc080fc77d2c2456fc092928bb2f7a1262c082.jpg',
+          alt: 'Pre-construction termite control service image'
+        },
+        {
+          title: 'Cockroach Control Treatment',
+          text: 'Targeted cockroach treatment for kitchens, washrooms, cabinets, drains, and hidden breeding zones using safe approved methods.',
+          image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/19490f0514b8afb27f2406b3c860f9ddcd229b88.jpg',
+          alt: 'Cockroach control product displayed in a kitchen setting'
+        },
+        {
+          title: 'Rodent Control Treatment',
+          text: 'Inspection-led rodent management for homes, offices, shops, and warehouses with control planning for entry points and infestation zones.',
+          image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/c35c0872bfa9451f7de60cc667ec006756df049c.jpg',
+          alt: 'Technician servicing a rodent bait station near a building wall'
+        },
+        {
+          title: 'Mosquito Control Treatment',
+          text: 'Source reduction and mosquito control treatment to improve hygiene, reduce breeding, and protect indoor and outdoor spaces.',
+          image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/346393ddea01eb1fdd4a651c1aaf201858cfdaf8.jpg',
+          alt: 'General pest control promotional service image'
+        },
+        {
+          title: 'Bedbug Control Treatment',
+          text: 'Systematic bed bug treatment for mattresses, furniture, corners, cracks, and hidden infestation areas in residential and commercial spaces.',
+          image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/346393ddea01eb1fdd4a651c1aaf201858cfdaf8.jpg',
+          alt: 'General pest control service visual for bed bug treatment'
+        }
+      ],
       usp: [
         "India's first safety-focused pest control service",
         '23 quality parameters',
@@ -119,12 +126,12 @@ export default function App() {
         'Manufacturing Units'
       ],
       stats: [
-        { value: '5000+', label: 'Happy Clients' },
-        { value: '10K+', label: 'Orders Processed' },
-        { value: '4.9', label: 'Customer Rating' },
-        { value: '10+', label: 'Years Experience' },
-        { value: '23', label: 'Quality Parameters' },
-        { value: 'Multi-Year', label: 'Warranty Support' }
+        { value: 5000, suffix: '+', label: 'Happy Clients' },
+        { value: 10000, suffix: '+', label: 'Orders Processed' },
+        { value: 4.9, suffix: '', label: 'Customer Rating', decimals: 1 },
+        { value: 10, suffix: '+', label: 'Years Experience' },
+        { value: 23, suffix: '', label: 'Quality Parameters' },
+        { value: 3, suffix: ' Years', label: 'Warranty Support' }
       ],
       faqs: [
         {
@@ -152,26 +159,26 @@ export default function App() {
         {
           name: 'Priya Verma',
           role: 'Home Owner, India',
-          text: 'The team was very professional, inspected the house thoroughly, and completely resolved the termite problem. Highly recommended.'
+          text: 'The team was very professional, inspected the house thoroughly, and completely resolved the termite problem. Highly recommended.',
+          image: 'https://randomuser.me/api/portraits/women/44.jpg'
         },
         {
           name: 'Amit Sharma',
           role: 'Shop Owner, India',
-          text: 'Affordable pricing, proper drill and fill treatment, and very satisfying service quality with warranty support.'
+          text: 'Affordable pricing, proper drill and fill treatment, and very satisfying service quality with warranty support.',
+          image: 'https://randomuser.me/api/portraits/men/32.jpg'
+        },
+        {
+          name: 'Neha Singh',
+          role: 'Apartment Resident, India',
+          text: 'Quick service, clear communication, and the mosquito treatment really improved our comfort at home.',
+          image: 'https://randomuser.me/api/portraits/women/68.jpg'
         }
       ]
     }),
     []
   );
-  const [isLeadPopupOpen, setIsLeadPopupOpen] = useState(false);
 
-useEffect(() => {
-  const timer = setTimeout(() => {
-    setIsLeadPopupOpen(true);
-  }, 800);
-
-  return () => clearTimeout(timer);
-}, []);
   return (
     <>
       <Header
@@ -197,10 +204,9 @@ useEffect(() => {
       <WhatsAppFloat business={business} />
       <LeadPopup
         business={business}
-        isOpen={isLeadPopupOpen}
-        onClose={() => setIsLeadPopupOpen(false)}
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
       />
-      
     </>
   );
 }

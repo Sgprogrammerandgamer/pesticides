@@ -1,21 +1,27 @@
 export default function Testimonials({ business }) {
   return (
-    <section className="section">
+    <section className="section testimonials-section" id="testimonials">
       <div className="container">
-        <div className="section-head">
-          <p className="eyebrow">Client Testimonials</p>
-          <h2>What Our Customers Say</h2>
-          <p className="section-copy">
-            The Hygiene reference highlights successful protection of homes and commercial properties, with testimonial themes focused on professionalism, affordability, and warranty-backed satisfaction.
-          </p>
+        <div className="section-heading left-aligned">
+          <span className="eyebrow">Testimonials</span>
+          <h2>What customers say after treatment</h2>
         </div>
-
-        <div className="testimonial-grid">
+        <div className="testimonials-grid">
           {business.testimonials.map((item) => (
-            <article className="card testimonial-card" key={item.name}>
-              <p>“{item.text}”</p>
-              <strong>{item.name}</strong>
-              <span>{item.role}</span>
+            <article key={item.name} className="testimonial-card">
+              <div className="testimonial-user">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  loading="lazy"
+                  className="testimonial-avatar"
+                />
+                <div>
+                  <h3>{item.name}</h3>
+                  <p>{item.role}</p>
+                </div>
+              </div>
+              <p className="testimonial-text">“{item.text}”</p>
             </article>
           ))}
         </div>

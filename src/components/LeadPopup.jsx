@@ -1,181 +1,251 @@
-import { useEffect, useState } from 'react';
-
-const initialState = {
-  name: '',
-  phone: '',
-  email: '',
-  service: 'Termite Control Treatment',
-  message: '',
-  consent: false
-};
+import { useEffect, useRef, useState } from 'react';
 
 export default function LeadPopup({ business, isOpen, onClose }) {
-  const [form, setForm] = useState(initialState);
-  const [status, setStatus] = useState({ type: '', message: '' });
-  const [loading, setLoading] = useState(false);
+  const dialogRef = useRef(null);
+  const firstInputRef = useRef(null);
+
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    service: '',
+    message: '',
+    consent: true
+  });
+
+  const [status, setStatus] = useState({
+    loading: false,
+    success: '',
+    error: ''
+  });
 
   useEffect(() => {
-    if (!isOpen) {
-      setForm(initialState);
-      setStatus({ type: '', message: '' });
-      setLoading(false);
-    }
-  }, [isOpen]);
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') onClose();
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    const timer = setTimeout(() => {
+      firstInputRef.current?.focus();
+    }, 30);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', handleKeyDown);
+      clearTimeout(timer);
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setForm((prev) => ({
+  const handleChange = (event) => {
+    const { name, value, type, checked } = event.target;
+    setFormData((prev) => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value
     }));
   };
 
-  const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setStatus({ loading: true, success: '', error: '' });
 
-  if (!form.consent) {
-    setStatus({
-      type: 'error',
-      message: 'Please confirm consent before submitting the form.'
-    });
-    return;
-  }
+    try {
+      const response = await fetch(`${business.apiBaseUrl}/api/leads`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          ...formData,
+          source: 'website-popup',
+          businessName: business.name
+        })
+      });
 
-  try {
-    setLoading(true);
-    setStatus({ type: '', message: '' });
+      const data = await response.json();
 
-    const API_URL = import.meta.env.VITE_API_URL;
-    console.log('API URL:', import.meta.env.VITE_API_URL);
-    const response = await fetch(`${API_URL}/api/leads`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        ...form,
-        source: 'website-popup',
-        consentText: 'I agree to be contacted regarding pest control services.'
-      })
-    });
+      if (!response.ok) {
+        throw new Error(data.message || 'Something went wrong');
+      }
 
-    const contentType = response.headers.get('content-type');
+      setStatus({
+        loading: false,
+        success: 'Your request has been submitted successfully.',
+        error: ''
+      });
 
-    if (!contentType || !contentType.includes('application/json')) {
-      const text = await response.text();
-      throw new Error(`Expected JSON but got: ${text.slice(0, 120)}`);
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        service: '',
+        message: '',
+        consent: true
+      });
+
+      setTimeout(() => {
+        onClose();
+      }, 1400);
+    } catch (error) {
+      setStatus({
+        loading: false,
+        success: '',
+        error: error.message || 'Failed to submit form'
+      });
     }
+  };
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.message || 'Failed to submit form');
+  const handleOverlayClick = (event) => {
+    if (event.target === event.currentTarget) {
+      onClose();
     }
+  };
 
-    setStatus({
-      type: 'success',
-      message: 'Thank you. Your request has been submitted successfully.'
-    });
-    setForm(initialState);
-  } catch (error) {
-    setStatus({
-      type: 'error',
-      message: error.message || 'Something went wrong. Please try again.'
-    });
-  } finally {
-    setLoading(false);
-  }
-};
   return (
-    <div className="popup-overlay" role="dialog" aria-modal="true" aria-label="Get free pest control quote">
-      <div className="popup-card">
-        <button className="popup-close" type="button" onClick={onClose} aria-label="Close form">
+    <div className="lead-modal-overlay" onClick={handleOverlayClick}>
+      <div
+        ref={dialogRef}
+        className="lead-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="lead-popup-title"
+      >
+        <button
+          type="button"
+          className="lead-modal-close"
+          onClick={onClose}
+          aria-label="Close popup"
+        >
           ×
         </button>
 
-        <p className="eyebrow">Get Free Pest Control Quote</p>
-        <h3>Tell us about your pest issue</h3>
-        <p className="section-copy">
-          Fill this form and our team will contact you with inspection and treatment guidance.
-        </p>
+        <div className="lead-modal-content">
+          <div className="lead-modal-intro">
+            <span className="eyebrow">Quick enquiry</span>
+            <h2 id="lead-popup-title">Book your pest control consultation</h2>
+            <p>
+              Share your details and our team will contact you for inspection,
+              pricing, and treatment guidance.
+            </p>
 
-        <form className="lead-form" onSubmit={handleSubmit}>
-          <label>
-            Full name
-            <input
-              type="text"
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              placeholder="Enter your name"
-              required
-            />
-          </label>
+            <div className="lead-modal-points">
+              <span>Fast response</span>
+              <span>Safe service methods</span>
+              <span>Residential & commercial</span>
+            </div>
+          </div>
 
-          <label>
-            Phone number
-            <input
-              type="tel"
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-              placeholder="Enter your phone number"
-              required
-            />
-          </label>
+          <form className="lead-form" onSubmit={handleSubmit}>
+            <div className="lead-grid">
+              <div className="field">
+                <label htmlFor="lead-name">Full name</label>
+                <input
+                  ref={firstInputRef}
+                  id="lead-name"
+                  type="text"
+                  name="name"
+                  placeholder="Enter your name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-          <label>
-            Email address
-            <input
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              placeholder="Enter your email"
-            />
-          </label>
+              <div className="field">
+                <label htmlFor="lead-phone">Phone number</label>
+                <input
+                  id="lead-phone"
+                  type="tel"
+                  name="phone"
+                  placeholder="Enter your phone number"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-          <label>
-            Select service
-            <select name="service" value={form.service} onChange={handleChange} required>
-              <option>Termite Control Treatment</option>
-              <option>Pre-Construction Termite Control Treatment</option>
-              <option>Cockroach Control Treatment</option>
-              <option>Rodent Control Treatment</option>
-              <option>Mosquito Control Treatment</option>
-              <option>Bedbug Control Treatment</option>
-            </select>
-          </label>
+              <div className="field">
+                <label htmlFor="lead-email">Email address</label>
+                <input
+                  id="lead-email"
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </div>
 
-          <label>
-            Message
-            <textarea
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              rows="4"
-              placeholder="Tell us about the problem or property type"
-            />
-          </label>
+              <div className="field">
+                <label htmlFor="lead-service">Service needed</label>
+                <select
+                  id="lead-service"
+                  name="service"
+                  value={formData.service}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Select a service</option>
+                  <option value="Termite Control">Termite Control</option>
+                  <option value="Cockroach Control">Cockroach Control</option>
+                  <option value="Rodent Control">Rodent Control</option>
+                  <option value="Mosquito Control">Mosquito Control</option>
+                  <option value="Bed Bug Control">Bed Bug Control</option>
+                  <option value="General Inspection">General Inspection</option>
+                </select>
+              </div>
+            </div>
 
-          <label className="checkbox-row">
-            <input
-              type="checkbox"
-              name="consent"
-              checked={form.consent}
-              onChange={handleChange}
-            />
-            <span>I agree to be contacted regarding pest control services.</span>
-          </label>
+            <div className="field">
+              <label htmlFor="lead-message">Your message</label>
+              <textarea
+                id="lead-message"
+                name="message"
+                rows="4"
+                placeholder="Tell us about the issue or your location"
+                value={formData.message}
+                onChange={handleChange}
+              />
+            </div>
 
-          {status.message ? (
-            <p className={`form-status ${status.type}`}>{status.message}</p>
-          ) : null}
+            <label className="consent-row">
+              <input
+                type="checkbox"
+                name="consent"
+                checked={formData.consent}
+                onChange={handleChange}
+              />
+              <span>
+                I agree to be contacted regarding my enquiry submitted on this website.
+              </span>
+            </label>
 
-          <button className="btn btn-primary full-width" type="submit" disabled={loading}>
-            {loading ? 'Submitting...' : 'Submit Request'}
-          </button>
-        </form>
+            {status.success ? <p className="form-success">{status.success}</p> : null}
+            {status.error ? <p className="form-error">{status.error}</p> : null}
+
+            <div className="lead-form-actions">
+              <button type="submit" className="btn btn-primary ripple-button" disabled={status.loading}>
+                {status.loading ? 'Submitting...' : 'Request Free Quote'}
+              </button>
+
+              <a
+                href={`https://wa.me/${business.whatsappNumber}?text=Hello%20I%20need%20pest%20control%20support`}
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-secondary"
+              >
+                WhatsApp Instead
+              </a>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

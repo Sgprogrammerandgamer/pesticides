@@ -1,62 +1,61 @@
 export default function Hero({ business, openPopup }) {
-  const whatsappLink = `https://wa.me/${business.whatsappNumber}?text=${encodeURIComponent(
-    'Hello, I want to book a pest control inspection.'
-  )}`;
+  const whatsappLink = `https://wa.me/${business.whatsappNumber}?text=Hello%20I%20want%20a%20pest%20control%20quote`;
 
   return (
     <section className="hero-section" id="top">
-      <div className="container hero-grid">
+      <div className="container hero-layout">
         <div className="hero-copy">
-          <p className="eyebrow">{business.tagline}</p>
-          <h1>{business.headline}</h1>
-          <h2 className="hero-subhead">{business.locationHeadline}</h2>
+          <span className="eyebrow">Trusted pest control in Delhi NCR</span>
+          <h1>{business.locationHeadline}</h1>
           <p className="hero-text">{business.description}</p>
 
           <div className="hero-actions">
-            <a className="btn btn-primary" href={`tel:${business.phoneRaw}`}>
-              Call Now
-            </a>
-            <a className="btn btn-outline" href={whatsappLink} target="_blank" rel="noopener noreferrer">
-              WhatsApp Now
-            </a>
-            <button className="btn btn-secondary" type="button" onClick={openPopup}>
-              Book Inspection
+            <button type="button" className="btn btn-primary ripple-button" onClick={openPopup}>
+              Get Free Quote
             </button>
+
+            <a
+              href={whatsappLink}
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-secondary"
+            >
+              Chat on WhatsApp
+            </a>
           </div>
 
-          <ul className="hero-points" role="list">
-            <li>10+ years of experience</li>
-            <li>Trained and certified technicians</li>
-            <li>Safe, effective, and long-lasting solutions</li>
-          </ul>
+          <div className="hero-tags">
+            <span>Certified technicians</span>
+            <span>Safe treatment methods</span>
+            <span>Fast service response</span>
+          </div>
         </div>
 
-        <aside className="hero-panel">
-          <p className="panel-label">Quick enquiry</p>
-          <h3>Send Us A Message</h3>
-          <p>
-            Professional inspections, customized treatment plans, and long-lasting pest management solutions for homes and businesses.
-          </p>
+        <div className="hero-panel ripple-card in-view">
+          <div className="hero-panel-top">
+            <span className="mini-badge">Quick service</span>
+            <h3>Book a site inspection with our expert team</h3>
+          </div>
 
-          <div className="stat-stack">
+          <div className="hero-panel-points">
             <div>
-              <strong>5000+</strong>
-              <span>Happy Clients</span>
+              <strong>10+ Years</strong>
+              <p>Experience in residential and commercial pest control</p>
             </div>
             <div>
-              <strong>10K+</strong>
-              <span>Orders Processed</span>
+              <strong>23 Quality Checks</strong>
+              <p>Process-led service designed for better outcomes</p>
             </div>
             <div>
-              <strong>4.9</strong>
-              <span>Customer Rating</span>
+              <strong>Multi-Year Warranty</strong>
+              <p>Support available for selected treatment plans</p>
             </div>
           </div>
 
-          <button className="btn btn-primary full-width" type="button" onClick={openPopup}>
-            Get Free Pest Control Quote
+          <button type="button" className="btn btn-primary ripple-button hero-panel-btn" onClick={openPopup}>
+            Schedule Inspection
           </button>
-        </aside>
+        </div>
       </div>
     </section>
   );

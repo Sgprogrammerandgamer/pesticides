@@ -1,19 +1,15 @@
 export default function Industries({ business }) {
   return (
-    <section className="section">
+    <section className="section industries-section" id="industries">
       <div className="container">
-        <div className="section-head">
-          <p className="eyebrow">Industries We Serve</p>
-          <h2>Support for residential, commercial, and industrial properties</h2>
-          <p className="section-copy">
-            We serve a broad range of spaces including homes, offices, hospitality, healthcare, education, and storage environments.
-          </p>
+        <div className="section-heading left-aligned">
+          <span className="eyebrow">Industries we serve</span>
+          <h2>Reliable support across every type of property</h2>
         </div>
-
-        <div className="industry-grid">
-          {business.industries.map((item) => (
-            <div className="card chip-card" key={item}>
-              <span>{item}</span>
+        <div className="industries-grid">
+          {business.industries.map((industry) => (
+            <div key={industry} className="industry-pill">
+              {industry}
             </div>
           ))}
         </div>

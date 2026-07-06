@@ -1,33 +1,29 @@
-import logo from '../assets/logo.png';
-
 export default function Header({ business, openPopup, theme, setTheme }) {
-  const whatsappLink = `https://wa.me/${business.whatsappNumber}?text=${encodeURIComponent(
-    'Hello, I need pest control service.'
-  )}`;
+  const whatsappLink = `https://wa.me/${business.whatsappNumber}?text=Hello%20I%20need%20pest%20control%20service`;
 
   return (
     <header className="site-header">
-      <div className="container nav-row">
+      <div className="container header-inner">
         <a href="#top" className="brand-mark">
-          <img src={logo} alt="Hygiene Pest Control Services logo" className="nav-logo" />
-          <div>
+          <div className="brand-icon">HP</div>
+          <div className="brand-copy">
             <h2>{business.name}</h2>
             <p>{business.tagline}</p>
           </div>
         </a>
 
-        <nav className="nav-links">
-          <a href="#about">About</a>
+        <nav className="desktop-nav" aria-label="Primary navigation">
           <a href="#services">Services</a>
-          <a href="#process">Process</a>
+          <a href="#benefits">Benefits</a>
+          <a href="#industries">Industries</a>
           <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
         </nav>
 
-        <div className="nav-actions">
+        <div className="header-actions">
           <button
-            className="theme-toggle"
             type="button"
+            className="theme-toggle"
             onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
             aria-label="Toggle theme"
           >
@@ -35,16 +31,16 @@ export default function Header({ business, openPopup, theme, setTheme }) {
           </button>
 
           <a
-            className="btn btn-outline"
             href={whatsappLink}
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noreferrer"
+            className="btn btn-secondary header-btn"
           >
             WhatsApp
           </a>
 
-          <button className="btn btn-primary" type="button" onClick={openPopup}>
-            Get Quote
+          <button type="button" className="btn btn-primary ripple-button header-btn" onClick={openPopup}>
+            Free Quote
           </button>
         </div>
       </div>

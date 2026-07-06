@@ -51,10 +51,10 @@ export default function ProcessSection({ business }) {
 
         <div className="process-grid">
           {business.process.map((step, index) => {
-            const stepImage = processImages[index];
+            const stepImage = processImages[index] ?? processImages[0];
 
             return (
-              <article className="card process-card" key={step}>
+              <article className="card process-card" key={`${step}-${index}`}>
                 <div className="process-image-wrap">
                   <img
                     src={stepImage.image}
@@ -63,11 +63,23 @@ export default function ProcessSection({ business }) {
                     loading="lazy"
                     width="900"
                     height="700"
+                    onError={(event) => {
+                      event.currentTarget.style.display = 'none';
+                      const fallback =
+                        event.currentTarget.parentElement.querySelector('.image-fallback');
+                      if (fallback) fallback.hidden = false;
+                    }}
                   />
+                  <div className="image-fallback" hidden>
+                    <span>{stepImage.title}</span>
+                    <p>Replace this image URL if the old source expires.</p>
+                  </div>
                 </div>
 
-                <span className="step-badge">0{index + 1}</span>
-                <h3>{step}</h3>
+                <div className="process-card-body">
+                  <span className="step-badge">{String(index + 1).padStart(2, '0')}</span>
+                  <h3>{step}</h3>
+                </div>
               </article>
             );
           })}
