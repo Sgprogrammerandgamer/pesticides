@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import Header from './components/Header';
+import ThemeFloat from './components/ThemeFloat';
 import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
@@ -42,10 +43,11 @@ export default function App() {
       phoneDisplay: '+91 88096 91313',
       phoneRaw: '918809691313',
       whatsappNumber: '918809691313',
+      logo: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/logo.png',
       email: 'support@hygienepestcontrol.in',
       location: 'Plot no. 2302, Surat Nagar Phase-2, Gurgaon',
       serviceArea: 'Noida, Gurgaon, Delhi NCR and nearby service areas',
-      apiBaseUrl: 'http://localhost:5000',
+      apiBaseUrl: 'https://pesticides-backend-3efh.onrender.com',
       copyright: '© 2026 All Rights Reserved | Hygiene Pest Control Services',
       quickAssistBg:
         'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1400&q=80',
@@ -53,7 +55,7 @@ export default function App() {
         {
           title: 'Termite Control Treatment',
           text: 'Professional termite inspection and treatment to protect wooden structures, walls, furniture, and foundations from long-term damage.',
-          image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/e6fc080fc77d2c2456fc092928bb2f7a1262c082.jpg',
+          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/images.jpg',
           alt: 'Technician treating a termite bait station outdoors'
         },
         {
@@ -65,7 +67,7 @@ export default function App() {
         {
           title: 'Cockroach Control Treatment',
           text: 'Targeted cockroach treatment for kitchens, washrooms, cabinets, drains, and hidden breeding zones using safe approved methods.',
-          image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/19490f0514b8afb27f2406b3c860f9ddcd229b88.jpg',
+          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/rvger.jpg',
           alt: 'Cockroach control product displayed in a kitchen setting'
         },
         {
@@ -77,13 +79,13 @@ export default function App() {
         {
           title: 'Mosquito Control Treatment',
           text: 'Source reduction and mosquito control treatment to improve hygiene, reduce breeding, and protect indoor and outdoor spaces.',
-          image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/346393ddea01eb1fdd4a651c1aaf201858cfdaf8.jpg',
+          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/grere.jpg',
           alt: 'General pest control promotional service image'
         },
         {
           title: 'Bedbug Control Treatment',
           text: 'Systematic bed bug treatment for mattresses, furniture, corners, cracks, and hidden infestation areas in residential and commercial spaces.',
-          image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/346393ddea01eb1fdd4a651c1aaf201858cfdaf8.jpg',
+          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/images5.jpg',
           alt: 'General pest control service visual for bed bug treatment'
         }
       ],
@@ -106,12 +108,36 @@ export default function App() {
         'Customer support'
       ],
       process: [
-        'Inspection',
-        'Assessment',
-        'Customized Plan',
-        'Treatment',
-        'Post-Treatment Guidance',
-        'Follow-up'
+        {
+          title: 'Inspection',
+          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/188bda424647b8f2f9ed44c1fa613f91a8af3350.jpg',
+          alt: 'Pest control inspection at customer site'
+        },
+        {
+          title: 'Assessment',
+          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/images.jpg',
+          alt: 'Technician assessing pest problem area'
+        },
+        {
+          title: 'Customized Plan',
+          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/wfwe.jpg',
+          alt: 'Technician planning pest treatment approach'
+        },
+        {
+          title: 'Treatment',
+          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/398c3a1cbc5821efbd820ac46b2eda554f08bdc7.jpg',
+          alt: 'Pest control treatment in progress'
+        },
+        {
+          title: 'Post-Treatment Guidance',
+          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/images12.jpg',
+          alt: 'Technician explaining post-treatment care'
+        },
+        {
+          title: 'Follow-up',
+          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/fese.webp',
+          alt: 'Follow-up pest control support visit'
+        }
       ],
       industries: [
         'Homes',
@@ -160,19 +186,19 @@ export default function App() {
           name: 'Priya Verma',
           role: 'Home Owner, India',
           text: 'The team was very professional, inspected the house thoroughly, and completely resolved the termite problem. Highly recommended.',
-          image: 'https://randomuser.me/api/portraits/women/44.jpg'
+          image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhdBUWQ-Q3YxvpfkJwSzVAmK8agPxN9Zcm2WrkSN1LRZdzc4_UlA6TJ0Qd&s=10'
         },
         {
           name: 'Amit Sharma',
           role: 'Shop Owner, India',
           text: 'Affordable pricing, proper drill and fill treatment, and very satisfying service quality with warranty support.',
-          image: 'https://randomuser.me/api/portraits/men/32.jpg'
+          image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShKXQ9g_VovedIddZw-Dk8eJ0nUPYcBs7ukwlGl2vFJ0lT-tIHC7IPCgI&s=10'
         },
         {
           name: 'Neha Singh',
           role: 'Apartment Resident, India',
           text: 'Quick service, clear communication, and the mosquito treatment really improved our comfort at home.',
-          image: 'https://randomuser.me/api/portraits/women/68.jpg'
+          image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUme6kR5Zwi0c-YTvsSkFOzqIA7GZ2dFh-x4iyQb2da8NQUrQpoTH96Q8&s=10'
         }
       ]
     }),
@@ -202,6 +228,8 @@ export default function App() {
       </main>
       <Footer business={business} />
       <WhatsAppFloat business={business} />
+      <WhatsAppFloat business={business} />
+      <ThemeFloat theme={theme} setTheme={setTheme} />
       <LeadPopup
         business={business}
         isOpen={isPopupOpen}

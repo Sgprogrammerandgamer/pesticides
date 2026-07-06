@@ -1,14 +1,14 @@
 export default function WhatsAppFloat({ business }) {
-  const whatsappLink = `https://wa.me/${business.whatsappNumber}?text=${encodeURIComponent(
-    'Hello, I visited your website and need pest control help.'
+  const href = `https://wa.me/${business.whatsappNumber}?text=${encodeURIComponent(
+    'Hello, I want to enquire about pest control services.'
   )}`;
 
   return (
     <a
-      className="whatsapp-float"
-      href={whatsappLink}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
+      className="whatsapp-float left-sticky"
       aria-label="Chat on WhatsApp"
     >
       WhatsApp

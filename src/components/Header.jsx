@@ -1,46 +1,30 @@
-export default function Header({ business, openPopup, theme, setTheme }) {
-  const whatsappLink = `https://wa.me/${business.whatsappNumber}?text=Hello%20I%20need%20pest%20control%20service`;
-
+export default function Header({ business, openPopup }) {
   return (
-    <header className="site-header">
+    <header className="site-header header">
       <div className="container header-inner">
-        <a href="#top" className="brand-mark">
-          <div className="brand-icon">HP</div>
+        <a href="#top" className="brand-mark" aria-label={`${business.name} home`}>
+          <img
+            src={business.logo}
+            alt={`${business.name} logo`}
+            className="brand-logo"
+          />
+
           <div className="brand-copy">
             <h2>{business.name}</h2>
-            <p>{business.tagline}</p>
           </div>
         </a>
 
-        <nav className="desktop-nav" aria-label="Primary navigation">
+        <nav className="desktop-nav" aria-label="Main navigation">
           <a href="#services">Services</a>
-          <a href="#benefits">Benefits</a>
-          <a href="#industries">Industries</a>
+          <a href="#process">Process</a>
+          <a href="#why-us">Why Us</a>
           <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
         </nav>
 
         <div className="header-actions">
-          <button
-            type="button"
-            className="theme-toggle"
-            onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-            aria-label="Toggle theme"
-          >
-            {theme === 'light' ? 'Dark' : 'Light'}
-          </button>
-
-          <a
-            href={whatsappLink}
-            target="_blank"
-            rel="noreferrer"
-            className="btn btn-secondary header-btn"
-          >
-            WhatsApp
-          </a>
-
-          <button type="button" className="btn btn-primary ripple-button header-btn" onClick={openPopup}>
-            Free Quote
+          <button type="button" className="btn btn-secondary header-btn" onClick={openPopup}>
+            Request Quote
           </button>
         </div>
       </div>

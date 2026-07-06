@@ -4,12 +4,15 @@ export default function Footer({ business }) {
       <div className="container footer-grid">
         <div className="footer-brand">
           <div className="footer-logo-row">
-            <div className="footer-logo-icon">HP</div>
-            <div>
-              <h3>{business.name}</h3>
-              <p>{business.tagline}</p>
-            </div>
-          </div>
+  <img
+    src={business.logo}
+    alt={`${business.name} logo`}
+    className="brand-logo"
+  />
+  <div className="footer-brand">
+    <h3>{business.name}</h3>
+  </div>
+</div>
           <p className="footer-about">
             Safe, professional, and reliable pest control services for homes,
             offices, shops, and commercial properties.

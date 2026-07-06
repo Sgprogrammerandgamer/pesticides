@@ -235,14 +235,14 @@ export default function LeadPopup({ business, isOpen, onClose }) {
                 {status.loading ? 'Submitting...' : 'Request Free Quote'}
               </button>
 
-              <a
+              {/* <a
                 href={`https://wa.me/${business.whatsappNumber}?text=Hello%20I%20need%20pest%20control%20support`}
                 target="_blank"
                 rel="noreferrer"
                 className="btn btn-secondary"
               >
                 WhatsApp Instead
-              </a>
+              </a> */}
             </div>
           </form>
         </div>
