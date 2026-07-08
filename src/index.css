@@ -1351,3 +1351,9 @@ select {
     object-fit: cover;
   }
 }
+.hero-copy h1,
+.hero-copy h2,
+.hero-section .highlight,
+.hero-section .text-green {
+  color: #0b3d2c;
+}
