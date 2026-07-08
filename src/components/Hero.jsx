@@ -3,7 +3,7 @@ export default function Hero({ business, openPopup }) {
     <section className="hero-section" id="top">
       <div className="container hero-layout">
         <div className="hero-copy">
-          <span className="eyebrow">Trusted Pest Control Service</span>
+          {/* <span className="eyebrow">Trusted Pest Control Service</span> */}
           <h1>{business.locationHeadline || business.headline}</h1>
           <p className="hero-text">{business.description}</p>
 

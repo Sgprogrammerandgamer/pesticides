@@ -14,13 +14,13 @@ export default function Header({ business, openPopup }) {
           </div>
         </a>
 
-        <nav className="desktop-nav" aria-label="Main navigation">
+        {/* <nav className="desktop-nav" aria-label="Main navigation">
           <a href="#services">Services</a>
           <a href="#process">Process</a>
           <a href="#why-us">Why Us</a>
           <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
-        </nav>
+        </nav> */}
 
         <div className="header-actions">
           <button type="button" className="btn btn-secondary header-btn" onClick={openPopup}>

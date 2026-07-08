@@ -31,7 +31,7 @@ export default function App() {
 
   const business = useMemo(
     () => ({
-      name: 'Hygiene Pest Control Services',
+      name: 'Expert Pesticides',
       alternateBrand: 'Expert Pesticides',
       tagline: "India's first safety-focused pest control service provider.",
       headline: 'Safe & Guaranteed Pest Control Services in Your City',
