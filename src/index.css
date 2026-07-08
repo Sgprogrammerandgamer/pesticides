@@ -1354,6 +1354,7 @@ select {
 .hero-copy h1,
 .hero-copy h2,
 .hero-section .highlight,
+.hero-text,
 .hero-section .text-green {
-  color: #0b3d2c;
+  color: #ffffff;
 }
