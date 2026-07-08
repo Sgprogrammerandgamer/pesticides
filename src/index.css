@@ -848,47 +848,6 @@ select {
   line-height: 1;
   cursor: pointer;
 }
-
-.lead-modal-content {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  min-height: 100%;
-}
-
-.lead-modal-intro {
-  padding: 36px 30px;
-  background: linear-gradient(180deg, #176730 0%, #0d451d 100%);
-  color: #fff;
-}
-
-.lead-modal-intro h2 {
-  margin: 14px 0 12px;
-  font-size: clamp(2rem, 3vw, 3rem);
-  line-height: 1.02;
-  font-weight: 800;
-}
-
-.lead-modal-intro p {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.84);
-  line-height: 1.7;
-}
-
-.lead-modal-points {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 24px;
-}
-
-.lead-modal-points span {
-  padding: 10px 12px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  font-size: 0.88rem;
-  font-weight: 600;
-}
-
 .lead-form {
   padding: 34px 30px;
 }
@@ -1305,4 +1264,90 @@ select {
   font-size: 1.08rem;
   line-height: 1.45;
   color: var(--green-deep);
+}
+.simple-lead-modal {
+  width: min(680px, 100%);
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.simple-lead-modal-body {
+  padding: 34px 28px 28px;
+}
+
+.simple-lead-title {
+  margin: 0 0 20px;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  line-height: 1.05;
+  color: var(--green-deep);
+  font-weight: 800;
+}
+
+.simple-lead-form {
+  padding: 0;
+}
+@media (max-width: 700px) {
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .header-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+  }
+
+  .header-btn {
+    padding: 10px 14px;
+    font-size: 0.86rem;
+    white-space: nowrap;
+  }
+}
+.hero-visual,
+.hero-image-wrap,
+.hero-image-card {
+  width: 100%;
+  max-width: 560px;
+}
+
+.hero-image,
+.hero-image-card img,
+.hero-visual img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: inherit;
+}
+@media (max-width: 700px) {
+  .hero-grid,
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .hero-copy {
+    order: 1;
+  }
+
+  .hero-visual,
+  .hero-image-wrap,
+  .hero-image-card {
+    order: 2;
+    max-width: 100%;
+  }
+
+  .hero-image,
+  .hero-image-card img,
+  .hero-visual img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
 }

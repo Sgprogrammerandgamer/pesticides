@@ -1,121 +1,42 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 
 export default function LeadPopup({ business, isOpen, onClose }) {
-  const dialogRef = useRef(null);
-  const firstInputRef = useRef(null);
-
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    email: '',
     service: '',
+    city: '',
     message: '',
-    consent: true
   });
 
   const [status, setStatus] = useState({
-    loading: false,
-    success: '',
-    error: ''
+    type: '',
+    message: '',
   });
-
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-
-    const handleKeyDown = (event) => {
-      if (event.key === 'Escape') onClose();
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-
-    const timer = setTimeout(() => {
-      firstInputRef.current?.focus();
-    }, 30);
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      document.removeEventListener('keydown', handleKeyDown);
-      clearTimeout(timer);
-    };
-  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
   const handleChange = (event) => {
-    const { name, value, type, checked } = event.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
+    const { name, value } = event.target;
+    setFormData((current) => ({
+      ...current,
+      [name]: value,
     }));
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    setStatus({ loading: true, success: '', error: '' });
-
-    try {
-      const response = await fetch(`${business.apiBaseUrl}/api/leads`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          ...formData,
-          source: 'website-popup',
-          businessName: business.name
-        })
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Something went wrong');
-      }
-
-      setStatus({
-        loading: false,
-        success: 'Your request has been submitted successfully.',
-        error: ''
-      });
-
-      setFormData({
-        name: '',
-        phone: '',
-        email: '',
-        service: '',
-        message: '',
-        consent: true
-      });
-
-      setTimeout(() => {
-        onClose();
-      }, 1400);
-    } catch (error) {
-      setStatus({
-        loading: false,
-        success: '',
-        error: error.message || 'Failed to submit form'
-      });
-    }
-  };
-
-  const handleOverlayClick = (event) => {
-    if (event.target === event.currentTarget) {
-      onClose();
-    }
+    setStatus({
+      type: 'success',
+      message: 'Your request has been submitted successfully.',
+    });
   };
 
   return (
-    <div className="lead-modal-overlay" onClick={handleOverlayClick}>
+    <div className="lead-modal-overlay" onClick={onClose}>
       <div
-        ref={dialogRef}
-        className="lead-modal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="lead-popup-title"
+        className="lead-modal simple-lead-modal"
+        onClick={(event) => event.stopPropagation()}
       >
         <button
           type="button"
@@ -126,123 +47,94 @@ export default function LeadPopup({ business, isOpen, onClose }) {
           ×
         </button>
 
-        <div className="lead-modal-content">
-          <div className="lead-modal-intro">
-            <span className="eyebrow">Quick enquiry</span>
-            <h2 id="lead-popup-title">Book your pest control consultation</h2>
-            <p>
-              Share your details and our team will contact you for inspection,
-              pricing, and treatment guidance.
-            </p>
+        <div className="simple-lead-modal-body">
+          <h2 className="simple-lead-title">Get free quote</h2>
 
-            <div className="lead-modal-points">
-              <span>Fast response</span>
-              <span>Safe service methods</span>
-              <span>Residential & commercial</span>
-            </div>
-          </div>
+          <form className="lead-form simple-lead-form" onSubmit={handleSubmit}>
+            {status.message && (
+              <p className={status.type === 'success' ? 'form-success' : 'form-error'}>
+                {status.message}
+              </p>
+            )}
 
-          <form className="lead-form" onSubmit={handleSubmit}>
             <div className="lead-grid">
               <div className="field">
-                <label htmlFor="lead-name">Full name</label>
+                <label htmlFor="name">Full Name</label>
                 <input
-                  ref={firstInputRef}
-                  id="lead-name"
-                  type="text"
+                  id="name"
                   name="name"
-                  placeholder="Enter your name"
+                  type="text"
                   value={formData.name}
                   onChange={handleChange}
+                  placeholder="Enter your name"
                   required
                 />
               </div>
 
               <div className="field">
-                <label htmlFor="lead-phone">Phone number</label>
+                <label htmlFor="phone">Phone Number</label>
                 <input
-                  id="lead-phone"
-                  type="tel"
+                  id="phone"
                   name="phone"
-                  placeholder="Enter your phone number"
+                  type="tel"
                   value={formData.phone}
                   onChange={handleChange}
+                  placeholder="Enter phone number"
                   required
                 />
               </div>
 
               <div className="field">
-                <label htmlFor="lead-email">Email address</label>
-                <input
-                  id="lead-email"
-                  type="email"
-                  name="email"
-                  placeholder="Enter your email"
-                  value={formData.email}
-                  onChange={handleChange}
-                />
-              </div>
-
-              <div className="field">
-                <label htmlFor="lead-service">Service needed</label>
+                <label htmlFor="service">Service Needed</label>
                 <select
-                  id="lead-service"
+                  id="service"
                   name="service"
                   value={formData.service}
                   onChange={handleChange}
                   required
                 >
                   <option value="">Select a service</option>
-                  <option value="Termite Control">Termite Control</option>
-                  <option value="Cockroach Control">Cockroach Control</option>
-                  <option value="Rodent Control">Rodent Control</option>
-                  <option value="Mosquito Control">Mosquito Control</option>
-                  <option value="Bed Bug Control">Bed Bug Control</option>
-                  <option value="General Inspection">General Inspection</option>
+                  {business.services.map((service) => (
+                    <option key={service.title} value={service.title}>
+                      {service.title}
+                    </option>
+                  ))}
                 </select>
+              </div>
+
+              <div className="field">
+                <label htmlFor="city">City / Area</label>
+                <input
+                  id="city"
+                  name="city"
+                  type="text"
+                  value={formData.city}
+                  onChange={handleChange}
+                  placeholder="Enter your city or area"
+                  required
+                />
               </div>
             </div>
 
             <div className="field">
-              <label htmlFor="lead-message">Your message</label>
+              <label htmlFor="message">Message</label>
               <textarea
-                id="lead-message"
+                id="message"
                 name="message"
                 rows="4"
-                placeholder="Tell us about the issue or your location"
                 value={formData.message}
                 onChange={handleChange}
+                placeholder="Tell us about your pest issue"
               />
             </div>
 
-            <label className="consent-row">
-              <input
-                type="checkbox"
-                name="consent"
-                checked={formData.consent}
-                onChange={handleChange}
-              />
-              <span>
-                I agree to be contacted regarding my enquiry submitted on this website.
-              </span>
-            </label>
-
-            {status.success ? <p className="form-success">{status.success}</p> : null}
-            {status.error ? <p className="form-error">{status.error}</p> : null}
-
             <div className="lead-form-actions">
-              <button type="submit" className="btn btn-primary ripple-button" disabled={status.loading}>
-                {status.loading ? 'Submitting...' : 'Request Free Quote'}
+              <button type="submit" className="btn btn-primary">
+                Submit
               </button>
-
-              {/* <a
-                href={`https://wa.me/${business.whatsappNumber}?text=Hello%20I%20need%20pest%20control%20support`}
-                target="_blank"
-                rel="noreferrer"
-                className="btn btn-secondary"
-              >
-                WhatsApp Instead
-              </a> */}
+              <button type="button" className="btn btn-secondary" onClick={onClose}>
+                Close
+              </button>
             </div>
           </form>
         </div>
