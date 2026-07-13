@@ -3,11 +3,13 @@ import { useEffect } from 'react';
 export default function Services({ business, openPopup }) {
   useEffect(() => {
     const cards = document.querySelectorAll('.ripple-observe');
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
           }
         });
       },
@@ -15,6 +17,7 @@ export default function Services({ business, openPopup }) {
     );
 
     cards.forEach((card) => observer.observe(card));
+
     return () => observer.disconnect();
   }, []);
 
@@ -23,11 +26,7 @@ export default function Services({ business, openPopup }) {
       <div className="container">
         <div className="section-heading left-aligned">
           <span className="eyebrow">Services</span>
-          <h2>Specialized treatments for every pest problem</h2>
-          <p>
-            Every service starts with inspection, risk mapping, and a safe treatment plan
-            tailored to the property.
-          </p>
+          <h2>Pest control services for homes and businesses</h2>
         </div>
 
         <div className="services-grid">
@@ -39,10 +38,15 @@ export default function Services({ business, openPopup }) {
               <div className="service-image-wrap">
                 <img src={service.image} alt={service.alt} loading="lazy" />
               </div>
+
               <div className="service-copy">
                 <h3>{service.title}</h3>
                 <p>{service.text}</p>
-                <button className="text-link" onClick={openPopup}>
+                <button
+                  type="button"
+                  className="text-link"
+                  onClick={openPopup}
+                >
                   Get quote
                 </button>
               </div>

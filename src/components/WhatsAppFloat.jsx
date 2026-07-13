@@ -8,7 +8,7 @@ export default function WhatsAppFloat({ business }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="whatsapp-float left-sticky"
+      className="whatsapp-float"
       aria-label="Chat on WhatsApp"
     >
       WhatsApp

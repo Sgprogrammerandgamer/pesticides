@@ -1,33 +1,27 @@
 import { useEffect, useMemo, useState } from 'react';
 import Header from './components/Header';
-import ThemeFloat from './components/ThemeFloat';
 import Hero from './components/Hero';
-import About from './components/About';
 import Services from './components/Services';
 import WhyChoose from './components/WhyChoose';
-import ProcessSection from './components/ProcessSection';
-import Industries from './components/Industries';
 import StatsSection from './components/StatsSection';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
-import CTASection from './components/CTASection';
 import Contact from './components/Contact';
+import About from './components/About';
 import Footer from './components/Footer';
 import LeadPopup from './components/LeadPopup';
 import WhatsAppFloat from './components/WhatsAppFloat';
+import CallFloat from './components/CallFloat';
+import ClientSection from './components/ClientSection';
+import HeroQuoteForm from './components/HeroQuoteForm';
 
 export default function App() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [theme, setTheme] = useState('light');
 
   useEffect(() => {
     const timer = setTimeout(() => setIsPopupOpen(true), 900);
     return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
 
   const business = useMemo(
     () => ({
@@ -44,13 +38,14 @@ export default function App() {
       phoneRaw: '918809691313',
       whatsappNumber: '918809691313',
       logo: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/logo.png',
-      email: 'support@hygienepestcontrol.in',
+      email: 'abc@gmail.com',
       location: 'Plot no. 2302, Surat Nagar Phase-2, Gurgaon',
       serviceArea: 'Noida, Gurgaon, Delhi NCR and nearby service areas',
       apiBaseUrl: 'https://pesticides-backend-3efh.onrender.com',
       copyright: '© 2026 All Rights Reserved | Hygiene Pest Control Services',
       quickAssistBg:
         'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1400&q=80',
+
       services: [
         {
           title: 'Termite Control Treatment',
@@ -89,6 +84,7 @@ export default function App() {
           alt: 'General pest control service visual for bed bug treatment'
         }
       ],
+
       usp: [
         "India's first safety-focused pest control service",
         '23 quality parameters',
@@ -97,6 +93,7 @@ export default function App() {
         'Consistent results over 10+ years',
         'Multi-year warranty'
       ],
+
       benefits: [
         'Experienced professionals',
         'Safe & approved methods',
@@ -107,58 +104,27 @@ export default function App() {
         'Timely service',
         'Customer support'
       ],
-      process: [
-        {
-          title: 'Inspection',
-          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/188bda424647b8f2f9ed44c1fa613f91a8af3350.jpg',
-          alt: 'Pest control inspection at customer site'
-        },
-        {
-          title: 'Assessment',
-          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/images.jpg',
-          alt: 'Technician assessing pest problem area'
-        },
-        {
-          title: 'Customized Plan',
-          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/wfwe.jpg',
-          alt: 'Technician planning pest treatment approach'
-        },
-        {
-          title: 'Treatment',
-          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/398c3a1cbc5821efbd820ac46b2eda554f08bdc7.jpg',
-          alt: 'Pest control treatment in progress'
-        },
-        {
-          title: 'Post-Treatment Guidance',
-          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/images12.jpg',
-          alt: 'Technician explaining post-treatment care'
-        },
-        {
-          title: 'Follow-up',
-          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/fese.webp',
-          alt: 'Follow-up pest control support visit'
-        }
-      ],
-      industries: [
-        'Homes',
-        'Apartments',
-        'Offices',
-        'Restaurants',
-        'Hotels',
-        'Hospitals',
-        'Warehouses',
+
+      clients: [
+        'Homeowners',
+        'Residential Societies',
+        'Corporate Offices',
+        'Restaurants & Cafes',
+        'Hotels & Guest Houses',
+        'Hospitals & Clinics',
         'Retail Stores',
-        'Educational Institutions',
-        'Manufacturing Units'
+        'Warehouses'
       ],
+
       stats: [
         { value: 5000, suffix: '+', label: 'Happy Clients' },
         { value: 10000, suffix: '+', label: 'Orders Processed' },
         { value: 4.9, suffix: '', label: 'Customer Rating', decimals: 1 },
-        { value: 10, suffix: '+', label: 'Years Experience' },
+        { value: 20, suffix: '+', label: 'Years Experience' },
         { value: 23, suffix: '', label: 'Quality Parameters' },
         { value: 3, suffix: ' Years', label: 'Warranty Support' }
       ],
+
       faqs: [
         {
           q: 'Is pest control safe for families and workplaces?',
@@ -173,14 +139,11 @@ export default function App() {
           a: 'Yes, we provide pest control support for homes, apartments, offices, restaurants, hotels, hospitals, warehouses, retail stores, and more.'
         },
         {
-          q: 'How does your service process work?',
-          a: 'Our process includes inspection, assessment, a customized treatment plan, execution, post-treatment guidance, and follow-up support.'
-        },
-        {
           q: 'How can I book a service quickly?',
           a: 'You can call us directly, send a WhatsApp message, or fill out the free quote form on the website.'
         }
       ],
+
       testimonials: [
         {
           name: 'Priya Verma',
@@ -199,6 +162,24 @@ export default function App() {
           role: 'Apartment Resident, India',
           text: 'Quick service, clear communication, and the mosquito treatment really improved our comfort at home.',
           image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUme6kR5Zwi0c-YTvsSkFOzqIA7GZ2dFh-x4iyQb2da8NQUrQpoTH96Q8&s=10'
+        },
+        {
+          name: 'Rohit Mehra',
+          role: 'Office Admin, India',
+          text: 'Very punctual team and the rodent control service was handled with proper planning and follow-up.',
+          image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80'
+        },
+        {
+          name: 'Sneha Kapoor',
+          role: 'Restaurant Manager, India',
+          text: 'Their service was detailed, professional, and effective for our kitchen and storage pest issues.',
+          image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=300&q=80'
+        },
+        {
+          name: 'Vikas Arora',
+          role: 'Warehouse Supervisor, India',
+          text: 'Good communication, clean work, and visible improvement after the first treatment itself.',
+          image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80'
         }
       ]
     }),
@@ -210,26 +191,24 @@ export default function App() {
       <Header
         business={business}
         openPopup={() => setIsPopupOpen(true)}
-        theme={theme}
-        setTheme={setTheme}
       />
+
       <main>
         <Hero business={business} openPopup={() => setIsPopupOpen(true)} />
-        <About business={business} />
+        <HeroQuoteForm business={business} />
         <Services business={business} openPopup={() => setIsPopupOpen(true)} />
         <WhyChoose business={business} />
-        <ProcessSection business={business} />
-        <Industries business={business} />
+        <ClientSection business={business} />
         <StatsSection business={business} />
         <Testimonials business={business} />
         <FAQ business={business} />
-        <CTASection business={business} openPopup={() => setIsPopupOpen(true)} />
         <Contact business={business} openPopup={() => setIsPopupOpen(true)} />
+        <About business={business} />
       </main>
+
       <Footer business={business} />
+      <CallFloat business={business} />
       <WhatsAppFloat business={business} />
-      <WhatsAppFloat business={business} />
-      <ThemeFloat theme={theme} setTheme={setTheme} />
       <LeadPopup
         business={business}
         isOpen={isPopupOpen}

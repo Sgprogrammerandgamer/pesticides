@@ -5,8 +5,6 @@ export default function LeadPopup({ business, isOpen, onClose }) {
     name: '',
     phone: '',
     service: '',
-    city: '',
-    message: '',
   });
 
   const [status, setStatus] = useState({
@@ -35,7 +33,7 @@ export default function LeadPopup({ business, isOpen, onClose }) {
   return (
     <div className="lead-modal-overlay" onClick={onClose}>
       <div
-        className="lead-modal simple-lead-modal"
+        className="lead-modal simple-lead-modal compact-lead-modal"
         onClick={(event) => event.stopPropagation()}
       >
         <button
@@ -47,90 +45,61 @@ export default function LeadPopup({ business, isOpen, onClose }) {
           ×
         </button>
 
-        <div className="simple-lead-modal-body">
-          <h2 className="simple-lead-title">Get free quote</h2>
-
-          <form className="lead-form simple-lead-form" onSubmit={handleSubmit}>
+        <div className="simple-lead-modal-body compact-lead-body">
+          <form className="lead-form simple-lead-form compact-lead-form" onSubmit={handleSubmit}>
             {status.message && (
               <p className={status.type === 'success' ? 'form-success' : 'form-error'}>
                 {status.message}
               </p>
             )}
 
-            <div className="lead-grid">
-              <div className="field">
-                <label htmlFor="name">Full Name</label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Enter your name"
-                  required
-                />
-              </div>
-
-              <div className="field">
-                <label htmlFor="phone">Phone Number</label>
-                <input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="Enter phone number"
-                  required
-                />
-              </div>
-
-              <div className="field">
-                <label htmlFor="service">Service Needed</label>
-                <select
-                  id="service"
-                  name="service"
-                  value={formData.service}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="">Select a service</option>
-                  {business.services.map((service) => (
-                    <option key={service.title} value={service.title}>
-                      {service.title}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className="field">
-                <label htmlFor="city">City / Area</label>
-                <input
-                  id="city"
-                  name="city"
-                  type="text"
-                  value={formData.city}
-                  onChange={handleChange}
-                  placeholder="Enter your city or area"
-                  required
-                />
-              </div>
-            </div>
-
             <div className="field">
-              <label htmlFor="message">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                rows="4"
-                value={formData.message}
+              <label htmlFor="popup-name">Full Name</label>
+              <input
+                id="popup-name"
+                name="name"
+                type="text"
+                value={formData.name}
                 onChange={handleChange}
-                placeholder="Tell us about your pest issue"
+                placeholder="Enter your name"
+                required
               />
             </div>
 
-            <div className="lead-form-actions">
+            <div className="field">
+              <label htmlFor="popup-phone">Phone Number</label>
+              <input
+                id="popup-phone"
+                name="phone"
+                type="tel"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="Enter phone number"
+                required
+              />
+            </div>
+
+            <div className="field">
+              <label htmlFor="popup-service">Service Needed</label>
+              <select
+                id="popup-service"
+                name="service"
+                value={formData.service}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select a service</option>
+                {business.services.map((service) => (
+                  <option key={service.title} value={service.title}>
+                    {service.title}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="lead-form-actions compact-lead-actions">
               <button type="submit" className="btn btn-primary">
-                Submit
+                Get Quote
               </button>
               <button type="button" className="btn btn-secondary" onClick={onClose}>
                 Close

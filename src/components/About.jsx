@@ -1,6 +1,6 @@
 export default function About({ business }) {
   return (
-    <section className="section" id="about">
+    <section className="section about-section" id="about">
       <div className="container two-col-section">
         <div>
           <p className="eyebrow">About Us</p>

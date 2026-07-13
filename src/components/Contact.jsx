@@ -1,60 +1,56 @@
-export default function Contact({ business, openPopup }) {
-  const whatsappLink = `https://wa.me/${business.whatsappNumber}?text=Hello%20I%20need%20pest%20control%20support`;
-
+export default function Contact({ business }) {
   return (
     <section className="section contact-section" id="contact">
-      <div className="container contact-layout">
-        <div className="contact-copy">
-          <span className="eyebrow">Contact us</span>
-          <h2>Talk to our pest control team today</h2>
-          <p>
-            Reach out for inspections, treatment planning, pricing support, and same-day
-            response availability in your service area.
-          </p>
+      <div className="container">
+        <div className="contact-layout single-contact-layout">
+          <div className="contact-copy full-contact-copy">
+            <span className="eyebrow">Contact Us</span>
+            <h2>Get in touch for inspection, support, or service booking</h2>
+            <p>
+              Reach out to our team for residential and commercial pest control
+              assistance. Call us directly, message on WhatsApp, or use the quote
+              form to get started.
+            </p>
 
-          <div className="contact-list">
-            <div className="contact-row">
-              <span className="contact-label">Phone</span>
-              <a href={`tel:${business.phoneRaw}`}>{business.phoneDisplay}</a>
+            <div className="contact-list">
+              <div className="contact-row contact-row-highlight">
+                <span className="contact-label">Call Now</span>
+                <a
+                  href={`tel:+${business.phoneRaw}`}
+                  className="contact-phone-link"
+                >
+                  {business.phoneDisplay}
+                </a>
+              </div>
+
+              <div className="contact-row">
+                <span className="contact-label">WhatsApp</span>
+                <a
+                  href={`https://wa.me/${business.whatsappNumber}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Chat on WhatsApp
+                </a>
+              </div>
+
+              <div className="contact-row">
+                <span className="contact-label">Email</span>
+                <a href={`mailto:${business.email}`}>
+                  {business.email}
+                </a>
+              </div>
+
+              {/* <div className="contact-row">
+                <span className="contact-label">Address</span>
+                <p>{business.location}</p>
+              </div> */}
+
+              <div className="contact-row">
+                <span className="contact-label">Service Area</span>
+                <p>{business.serviceArea}</p>
+              </div>
             </div>
-
-            <div className="contact-row">
-              <span className="contact-label">Email</span>
-              <a href={`mailto:${business.email}`}>{business.email}</a>
-            </div>
-
-            <div className="contact-row">
-              <span className="contact-label">Address</span>
-              <p>{business.location}</p>
-            </div>
-
-            <div className="contact-row">
-              <span className="contact-label">Service Area</span>
-              <p>{business.serviceArea}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className="contact-card-main">
-          <h3>Need quick assistance?</h3>
-          <p>
-            Request a callback, ask for treatment details, or connect instantly through
-            WhatsApp for faster support.
-          </p>
-
-          <div className="contact-card-actions">
-            <button type="button" className="btn btn-primary ripple-button full-btn" onClick={openPopup}>
-              Request Free Quote
-            </button>
-
-            <a
-              href={whatsappLink}
-              target="_blank"
-              rel="noreferrer"
-              className="btn btn-secondary full-btn"
-            >
-              Message on WhatsApp
-            </a>
           </div>
         </div>
       </div>

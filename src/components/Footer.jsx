@@ -10,8 +10,8 @@ export default function Footer({ business }) {
     className="brand-logo"
   />
   <div className="footer-brand">
-    <h3>{business.name}</h3>
-  </div>
+  <h3>{business.name}</h3>
+</div>
 </div>
           <p className="footer-about">
             Safe, professional, and reliable pest control services for homes,
@@ -34,12 +34,12 @@ export default function Footer({ business }) {
           <h4>Contact</h4>
           <a href={`tel:${business.phoneRaw}`}>{business.phoneDisplay}</a>
           <a href={`mailto:${business.email}`}>{business.email}</a>
-          <p>{business.location}</p>
+          {/* <p>{business.location}</p> */}
           <p>{business.serviceArea}</p>
         </div>
       </div>
 
-      <div className="footer-bottom">
+      {/* <div className="footer-bottom">
         <div className="container footer-bottom-inner">
           <p>{business.copyright}</p>
           <a
@@ -50,7 +50,7 @@ export default function Footer({ business }) {
             WhatsApp Support
           </a>
         </div>
-      </div>
+      </div> */}
     </footer>
   );
 }
