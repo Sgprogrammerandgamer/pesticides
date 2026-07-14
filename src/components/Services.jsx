@@ -37,14 +37,12 @@ export default function Services({ business, openPopup }) {
               className={`service-card reveal-observe delay-${index % 4}`}
               key={service.title || index}
             >
-              <div className="service-image-wrap">
-                <img
-                  src={service.image}
-                  alt={service.alt || service.title}
-                  className="service-image"
-                  loading="lazy"
-                />
-              </div>
+              <div
+                className="service-image-wrap"
+                style={{ backgroundImage: `url(${service.image})` }}
+                role="img"
+                aria-label={service.alt || service.title}
+              />
 
               <div className="service-copy">
                 <h3>{service.title}</h3>

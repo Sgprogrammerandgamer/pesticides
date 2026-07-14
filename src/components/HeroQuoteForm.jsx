@@ -5,6 +5,8 @@ export default function HeroQuoteForm({ business }) {
     name: '',
     phone: '',
     service: '',
+    place: '',
+    message: '',
   });
 
   const [status, setStatus] = useState({
@@ -24,6 +26,16 @@ export default function HeroQuoteForm({ business }) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    const payload = {
+      name: formData.name,
+      phone: formData.phone,
+      service: formData.service,
+      place: formData.place,
+      message: formData.message,
+    };
+
+    console.log(payload);
+
     setStatus({
       type: 'success',
       message: 'Your request has been submitted successfully.',
@@ -33,6 +45,8 @@ export default function HeroQuoteForm({ business }) {
       name: '',
       phone: '',
       service: '',
+      place: '',
+      message: '',
     });
   };
 
@@ -45,6 +59,7 @@ export default function HeroQuoteForm({ business }) {
             <h2>Get a quick quote for your pest control requirement</h2>
           </div>
 
+
           <form className="lead-form hero-inline-form" onSubmit={handleSubmit}>
             {status.message && (
               <p className={status.type === 'success' ? 'form-success' : 'form-error'}>
@@ -54,47 +69,71 @@ export default function HeroQuoteForm({ business }) {
 
             <div className="lead-grid hero-quote-grid">
               <div className="field">
-                <label htmlFor="hero-name">Full Name</label>
                 <input
                   id="hero-name"
                   name="name"
                   type="text"
                   value={formData.name}
                   onChange={handleChange}
-                  placeholder="Enter your name"
+                  placeholder="Full Name"
+                  aria-label="Full Name"
                   required
                 />
               </div>
 
               <div className="field">
-                <label htmlFor="hero-phone">Phone Number</label>
                 <input
                   id="hero-phone"
                   name="phone"
                   type="tel"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="Enter phone number"
+                  placeholder="Phone Number"
+                  aria-label="Phone Number"
                   required
                 />
               </div>
 
               <div className="field">
-                <label htmlFor="hero-service">Service Needed</label>
                 <select
                   id="hero-service"
                   name="service"
                   value={formData.service}
                   onChange={handleChange}
+                  aria-label="Service Needed"
                   required
                 >
-                  <option value="">Select a service</option>
-                  {business.services.map((service) => (
+                  <option value="">Select Service</option>
+                  {business?.services?.map((service) => (
                     <option key={service.title} value={service.title}>
                       {service.title}
                     </option>
                   ))}
                 </select>
+              </div>
+
+              <div className="field">
+                <input
+                  id="hero-place"
+                  name="place"
+                  type="text"
+                  value={formData.place}
+                  onChange={handleChange}
+                  placeholder="Place"
+                  aria-label="Place"
+                />
+              </div>
+
+              <div className="field field-full">
+                <textarea
+                  id="hero-message"
+                  name="message"
+                  rows="4"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Message"
+                  aria-label="Message"
+                />
               </div>
             </div>
 

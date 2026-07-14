@@ -5,6 +5,8 @@ export default function LeadPopup({ business, isOpen, onClose }) {
     name: '',
     phone: '',
     service: '',
+    place: '',
+    message: '',
   });
 
   const [status, setStatus] = useState({
@@ -24,6 +26,17 @@ export default function LeadPopup({ business, isOpen, onClose }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const payload = {
+      name: formData.name,
+      phone: formData.phone,
+      service: formData.service,
+      place: formData.place,
+      message: formData.message,
+    };
+
+    console.log(payload);
+
     setStatus({
       type: 'success',
       message: 'Your request has been submitted successfully.',
@@ -35,6 +48,9 @@ export default function LeadPopup({ business, isOpen, onClose }) {
       <div
         className="lead-modal simple-lead-modal compact-lead-modal"
         onClick={(event) => event.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Get quote form"
       >
         <button
           type="button"
@@ -46,7 +62,10 @@ export default function LeadPopup({ business, isOpen, onClose }) {
         </button>
 
         <div className="simple-lead-modal-body compact-lead-body">
-          <form className="lead-form simple-lead-form compact-lead-form" onSubmit={handleSubmit}>
+          <form
+            className="lead-form simple-lead-form compact-lead-form"
+            onSubmit={handleSubmit}
+          >
             {status.message && (
               <p className={status.type === 'success' ? 'form-success' : 'form-error'}>
                 {status.message}
@@ -54,47 +73,71 @@ export default function LeadPopup({ business, isOpen, onClose }) {
             )}
 
             <div className="field">
-              <label htmlFor="popup-name">Full Name</label>
               <input
                 id="popup-name"
                 name="name"
                 type="text"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="Enter your name"
+                placeholder="Full Name"
+                aria-label="Full Name"
                 required
               />
             </div>
 
             <div className="field">
-              <label htmlFor="popup-phone">Phone Number</label>
               <input
                 id="popup-phone"
                 name="phone"
                 type="tel"
                 value={formData.phone}
                 onChange={handleChange}
-                placeholder="Enter phone number"
+                placeholder="Phone Number"
+                aria-label="Phone Number"
                 required
               />
             </div>
 
             <div className="field">
-              <label htmlFor="popup-service">Service Needed</label>
               <select
                 id="popup-service"
                 name="service"
                 value={formData.service}
                 onChange={handleChange}
+                aria-label="Service Needed"
                 required
               >
-                <option value="">Select a service</option>
-                {business.services.map((service) => (
+                <option value="">Select Service</option>
+                {business?.services?.map((service) => (
                   <option key={service.title} value={service.title}>
                     {service.title}
                   </option>
                 ))}
               </select>
+            </div>
+
+            <div className="field">
+              <input
+                id="popup-place"
+                name="place"
+                type="text"
+                value={formData.place}
+                onChange={handleChange}
+                placeholder="Place"
+                aria-label="Place"
+              />
+            </div>
+
+            <div className="field">
+              <textarea
+                id="popup-message"
+                name="message"
+                rows="4"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Message"
+                aria-label="Message"
+              />
             </div>
 
             <div className="lead-form-actions compact-lead-actions">
