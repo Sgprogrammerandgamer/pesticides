@@ -2,39 +2,46 @@ import { useEffect } from 'react';
 
 export default function WhyChoose({ business }) {
   useEffect(() => {
-    const cards = document.querySelectorAll('.benefit-card.ripple-observe');
+    const items = document.querySelectorAll('.why-card');
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add('in-view');
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
         });
       },
       { threshold: 0.2 }
     );
 
-    cards.forEach((card) => observer.observe(card));
+    items.forEach((item) => observer.observe(item));
+
     return () => observer.disconnect();
   }, []);
 
+  const benefits = business?.benefits || [];
+
   return (
     <section className="section why-section" id="benefits">
-      <div className="container why-layout">
-        <div className="section-heading left-aligned compact-copy">
-          <span className="eyebrow">Why choose us</span>
-          <h2>
-            <span className="highlighted-heading">Service benefits</span> built around safety and consistency
-          </h2>
-          <p>{business.about}</p>
+      <div className="container">
+        <div className="section-heading left-aligned">
+          <span className="eyebrow">Why Choose Us</span>
+          <h2>Why customers trust Expert Pesticides</h2>
+          <p className="compact-copy">
+            Safe treatment methods, trained technicians, and reliable pest control support.
+          </p>
         </div>
 
-        <div className="benefits-grid">
-          {business.benefits.map((benefit, index) => (
+        <div className="why-grid">
+          {benefits.map((benefit, index) => (
             <article
+              className={`why-card reveal-observe delay-${index % 3}`}
               key={benefit}
-              className={`benefit-card ripple-card ripple-observe delay-${index % 3}`}
             >
-              <span className="benefit-dot" />
-              <h3>{benefit}</h3>
+              <span className="why-card-icon">✓</span>
+              <p>{benefit}</p>
             </article>
           ))}
         </div>

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 export default function Services({ business, openPopup }) {
   useEffect(() => {
-    const cards = document.querySelectorAll('.ripple-observe');
+    const items = document.querySelectorAll('.reveal-observe');
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -16,10 +16,12 @@ export default function Services({ business, openPopup }) {
       { threshold: 0.2 }
     );
 
-    cards.forEach((card) => observer.observe(card));
+    items.forEach((item) => observer.observe(item));
 
     return () => observer.disconnect();
   }, []);
+
+  const services = business?.services || [];
 
   return (
     <section className="section services-section" id="services">
@@ -30,25 +32,22 @@ export default function Services({ business, openPopup }) {
         </div>
 
         <div className="services-grid">
-          {business.services.map((service, index) => (
+          {services.map((service, index) => (
             <article
-              className={`service-card ripple-card ripple-observe delay-${index % 3}`}
-              key={service.title}
+              className={`service-card reveal-observe delay-${index % 4}`}
+              key={service.title || index}
             >
               <div className="service-image-wrap">
-                <img src={service.image} alt={service.alt} loading="lazy" />
+                <img
+                  src={service.image}
+                  alt={service.alt || service.title}
+                  className="service-image"
+                  loading="lazy"
+                />
               </div>
 
               <div className="service-copy">
                 <h3>{service.title}</h3>
-                <p>{service.text}</p>
-                <button
-                  type="button"
-                  className="text-link"
-                  onClick={openPopup}
-                >
-                  Get quote
-                </button>
               </div>
             </article>
           ))}

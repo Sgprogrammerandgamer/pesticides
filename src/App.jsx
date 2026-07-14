@@ -50,37 +50,37 @@ export default function App() {
         {
           title: 'Termite Control Treatment',
           text: 'Professional termite inspection and treatment to protect wooden structures, walls, furniture, and foundations from long-term damage.',
-          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/images.jpg',
+          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/termite-control.jpg',
           alt: 'Technician treating a termite bait station outdoors'
         },
         {
           title: 'Pre-Construction Termite Control Treatment',
           text: 'Preventive anti-termite treatment before construction to reduce future infestation risks and protect the property from the ground up.',
-          image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/e6fc080fc77d2c2456fc092928bb2f7a1262c082.jpg',
+          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/pre-construction.jpg',
           alt: 'Pre-construction termite control service image'
         },
         {
           title: 'Cockroach Control Treatment',
           text: 'Targeted cockroach treatment for kitchens, washrooms, cabinets, drains, and hidden breeding zones using safe approved methods.',
-          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/rvger.jpg',
+          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/cockroach-control.jpg',
           alt: 'Cockroach control product displayed in a kitchen setting'
         },
         {
           title: 'Rodent Control Treatment',
           text: 'Inspection-led rodent management for homes, offices, shops, and warehouses with control planning for entry points and infestation zones.',
-          image: 'https://pplx-res.cloudinary.com/image/upload/pplx_search_images/c35c0872bfa9451f7de60cc667ec006756df049c.jpg',
+          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/rodent-control.jpg',
           alt: 'Technician servicing a rodent bait station near a building wall'
         },
         {
           title: 'Mosquito Control Treatment',
           text: 'Source reduction and mosquito control treatment to improve hygiene, reduce breeding, and protect indoor and outdoor spaces.',
-          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/grere.jpg',
+          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/mosquito-control.jpg',
           alt: 'General pest control promotional service image'
         },
         {
           title: 'Bedbug Control Treatment',
           text: 'Systematic bed bug treatment for mattresses, furniture, corners, cracks, and hidden infestation areas in residential and commercial spaces.',
-          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/images5.jpg',
+          image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/bedbug-control.jpg',
           alt: 'General pest control service visual for bed bug treatment'
         }
       ],
@@ -106,15 +106,55 @@ export default function App() {
       ],
 
       clients: [
-        'Homeowners',
-        'Residential Societies',
-        'Corporate Offices',
-        'Restaurants & Cafes',
-        'Hotels & Guest Houses',
-        'Hospitals & Clinics',
-        'Retail Stores',
-        'Warehouses'
-      ],
+  {
+    image: 'https://cdn.jsdelivr.net/gh/Sgprogrammerandgamer/image-cdn@main/b%20(1).webp',
+    alt: 'Residential apartment building client',
+  },
+  {
+    image: 'https://cdn.jsdelivr.net/gh/Sgprogrammerandgamer/image-cdn@main/b%20(2).webp',
+    alt: 'Commercial office building client',
+  },
+  {
+    image: 'https://cdn.jsdelivr.net/gh/Sgprogrammerandgamer/image-cdn@main/b%20(3).webp',
+    alt: 'Hotel and hospitality property client',
+  },
+  {
+    image: 'https://cdn.jsdelivr.net/gh/Sgprogrammerandgamer/image-cdn@main/b%20(4).webp',
+    alt: 'Client property image 4',
+  },
+  {
+    image: 'https://cdn.jsdelivr.net/gh/Sgprogrammerandgamer/image-cdn@main/b%20(5).webp',
+    alt: 'Client property image 5',
+  },
+  {
+    image: 'https://cdn.jsdelivr.net/gh/Sgprogrammerandgamer/image-cdn@main/b%20(6).webp',
+    alt: 'Client property image 6',
+  },
+  {
+    image: 'https://cdn.jsdelivr.net/gh/Sgprogrammerandgamer/image-cdn@main/b%20(7).webp',
+    alt: 'Client property image 7',
+  },
+  {
+    image: 'https://cdn.jsdelivr.net/gh/Sgprogrammerandgamer/image-cdn@main/b%20(8).webp',
+    alt: 'Client property image 8',
+  },
+  {
+    image: 'https://cdn.jsdelivr.net/gh/Sgprogrammerandgamer/image-cdn@main/b%20(9).webp',
+    alt: 'Client property image 9',
+  },
+  {
+    image: 'https://cdn.jsdelivr.net/gh/Sgprogrammerandgamer/image-cdn@main/b%20(10).webp',
+    alt: 'Client property image 10',
+  },
+  {
+    image: 'https://cdn.jsdelivr.net/gh/Sgprogrammerandgamer/image-cdn@main/b%20(11).webp',
+    alt: 'Client property image 11',
+  },
+  {
+    image: 'https://cdn.jsdelivr.net/gh/Sgprogrammerandgamer/image-cdn@main/b%20(12).webp',
+    alt: 'Client property image 12',
+  },
+],
 
       stats: [
         { value: 5000, suffix: '+', label: 'Happy Clients' },
