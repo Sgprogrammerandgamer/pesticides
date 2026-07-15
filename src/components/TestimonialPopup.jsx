@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const testimonials = [
   {
@@ -15,36 +15,62 @@ const testimonials = [
   },
 ];
 
+function StarRating() {
+  return (
+    <div className="testimonial-rating" aria-label="Rated 4.5 out of 5 stars">
+      <span>★</span>
+      <span>★</span>
+      <span>★</span>
+      <span>★</span>
+      <span className="star-half">★</span>
+      <span className="rating-text">4.5/5</span>
+    </div>
+  );
+}
+
 export default function TestimonialPopup() {
   const [isVisible, setIsVisible] = useState(false);
   const [currentTestimonial, setCurrentTestimonial] = useState(testimonials[0]);
+  const timerRef = useRef(null);
+
+  const getRandomDelay = () => Math.floor(Math.random() * 10000) + 1000;
+
+  const showRandomTestimonial = () => {
+    const randomItem =
+      testimonials[Math.floor(Math.random() * testimonials.length)];
+    setCurrentTestimonial(randomItem);
+    setIsVisible(true);
+  };
+
+  const schedulePopup = () => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
+
+    timerRef.current = setTimeout(() => {
+      showRandomTestimonial();
+    }, getRandomDelay());
+  };
 
   useEffect(() => {
-    const showAfter = Math.floor(Math.random() * 12000) + 4000;
+    schedulePopup();
 
-    const openTimer = setTimeout(() => {
-      const randomItem = testimonials[Math.floor(Math.random() * testimonials.length)];
-      setCurrentTestimonial(randomItem);
-      setIsVisible(true);
-    }, showAfter);
-
-    return () => clearTimeout(openTimer);
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
   }, []);
 
-  useEffect(() => {
-    if (!isVisible) return;
-
-    const closeTimer = setTimeout(() => {
-      setIsVisible(false);
-    }, 3000);
-
-    return () => clearTimeout(closeTimer);
-  }, [isVisible]);
+  const handleClose = () => {
+    setIsVisible(false);
+    schedulePopup();
+  };
 
   if (!isVisible) return null;
 
   return (
-    <div className="testimonial-popup-overlay" onClick={() => setIsVisible(false)}>
+    <div className="testimonial-popup-overlay" onClick={handleClose}>
       <div
         className="testimonial-popup"
         role="dialog"
@@ -55,7 +81,7 @@ export default function TestimonialPopup() {
         <button
           type="button"
           className="testimonial-popup-close"
-          onClick={() => setIsVisible(false)}
+          onClick={handleClose}
           aria-label="Close testimonial popup"
         >
           ×
@@ -63,11 +89,10 @@ export default function TestimonialPopup() {
 
         <p className="testimonial-popup-eyebrow">What customers say</p>
         <h3 className="testimonial-popup-title">Trusted by happy clients</h3>
-
+        <StarRating />
         <blockquote className="testimonial-popup-quote">
           “{currentTestimonial.text}”
         </blockquote>
-
         <p className="testimonial-popup-name">— {currentTestimonial.name}</p>
       </div>
     </div>

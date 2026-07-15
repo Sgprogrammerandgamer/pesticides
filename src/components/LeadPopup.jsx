@@ -23,7 +23,6 @@ export default function LeadPopup({ business, isOpen, onClose }) {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-
     setFormData((current) => ({
       ...current,
       [name]: value,
@@ -98,41 +97,12 @@ export default function LeadPopup({ business, isOpen, onClose }) {
         </button>
 
         <div className="simple-lead-modal-body compact-lead-body">
-          <form
-            className="lead-form simple-lead-form compact-lead-form"
-            onSubmit={handleSubmit}
-          >
+          <form className="lead-form simple-lead-form compact-lead-form" onSubmit={handleSubmit}>
             {status.message && (
               <p className={status.type === 'success' ? 'form-success' : 'form-error'}>
                 {status.message}
               </p>
             )}
-
-            <div className="field">
-              <input
-                id="popup-name"
-                name="name"
-                type="text"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Full Name"
-                aria-label="Full Name"
-                required
-              />
-            </div>
-
-            <div className="field">
-              <input
-                id="popup-phone"
-                name="phone"
-                type="tel"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder="Phone Number"
-                aria-label="Phone Number"
-                required
-              />
-            </div>
 
             <div className="field">
               <select
@@ -154,13 +124,39 @@ export default function LeadPopup({ business, isOpen, onClose }) {
 
             <div className="field">
               <input
+                id="popup-name"
+                name="name"
+                type="text"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Name"
+                aria-label="Name"
+                required
+              />
+            </div>
+
+            <div className="field">
+              <input
+                id="popup-phone"
+                name="phone"
+                type="tel"
+                value={formData.phone}
+                onChange={handleChange}
+                placeholder="Phone"
+                aria-label="Phone"
+                required
+              />
+            </div>
+
+            <div className="field">
+              <input
                 id="popup-place"
                 name="place"
                 type="text"
                 value={formData.place}
                 onChange={handleChange}
-                placeholder="Place"
-                aria-label="Place"
+                placeholder="City"
+                aria-label="City"
               />
             </div>
 
@@ -168,7 +164,7 @@ export default function LeadPopup({ business, isOpen, onClose }) {
               <textarea
                 id="popup-message"
                 name="message"
-                rows="4"
+                rows="3"
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="Message"
@@ -178,15 +174,7 @@ export default function LeadPopup({ business, isOpen, onClose }) {
 
             <div className="lead-form-actions compact-lead-actions">
               <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
-                {isSubmitting ? 'Submitting...' : 'Get Quote'}
-              </button>
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={onClose}
-                disabled={isSubmitting}
-              >
-                Close
+                {isSubmitting ? 'Submitting...' : 'Get Free Quote'}
               </button>
             </div>
           </form>

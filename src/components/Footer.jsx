@@ -3,21 +3,24 @@ export default function Footer({ business }) {
     <footer className="site-footer">
       <div className="container footer-grid">
         <div className="footer-brand">
-          <div className="footer-logo-row">
-  <img
-    src={business.logo}
-    alt={`${business.name} logo`}
-    className="brand-logo"
-  />
-  <div className="footer-brand">
-  <h3>{business.name}</h3>
+  <div className="footer-logo-row-wrap">
+    <div className="footer-logo-row">
+      <img
+        src={business.logo}
+        alt={`${business.name} logo`}
+        className="brand-logo"
+      />
+      <div className="footer-company-name">
+        <h3>{business.name}</h3>
+      </div>
+    </div>
+  </div>
+
+  <p className="footer-about">
+    Safe, professional, and reliable pest control services for homes,
+    offices, shops, and commercial properties.
+  </p>
 </div>
-</div>
-          <p className="footer-about">
-            Safe, professional, and reliable pest control services for homes,
-            offices, shops, and commercial properties.
-          </p>
-        </div>
 
         <div className="footer-links-block">
           <h4>Quick links</h4>
