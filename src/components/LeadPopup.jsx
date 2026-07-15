@@ -1,5 +1,8 @@
 import { useState } from 'react';
 
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || 'https://pesticides-backend-3efh.onrender.com';
+
 export default function LeadPopup({ business, isOpen, onClose }) {
   const [formData, setFormData] = useState({
     name: '',
@@ -14,33 +17,66 @@ export default function LeadPopup({ business, isOpen, onClose }) {
     message: '',
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   if (!isOpen) return null;
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+
     setFormData((current) => ({
       ...current,
       [name]: value,
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setStatus({ type: '', message: '' });
+    setIsSubmitting(true);
 
-    const payload = {
-      name: formData.name,
-      phone: formData.phone,
-      service: formData.service,
-      place: formData.place,
-      message: formData.message,
-    };
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/leads`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          service: formData.service,
+          place: formData.place,
+          message: formData.message,
+          source: 'website-popup',
+        }),
+      });
 
-    console.log(payload);
+      const data = await response.json();
 
-    setStatus({
-      type: 'success',
-      message: 'Your request has been submitted successfully.',
-    });
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to submit form.');
+      }
+
+      setStatus({
+        type: 'success',
+        message: data.message || 'Your request has been submitted successfully.',
+      });
+
+      setFormData({
+        name: '',
+        phone: '',
+        service: '',
+        place: '',
+        message: '',
+      });
+    } catch (error) {
+      setStatus({
+        type: 'error',
+        message: error.message || 'Something went wrong.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -141,10 +177,15 @@ export default function LeadPopup({ business, isOpen, onClose }) {
             </div>
 
             <div className="lead-form-actions compact-lead-actions">
-              <button type="submit" className="btn btn-primary">
-                Get Quote
+              <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+                {isSubmitting ? 'Submitting...' : 'Get Quote'}
               </button>
-              <button type="button" className="btn btn-secondary" onClick={onClose}>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                onClick={onClose}
+                disabled={isSubmitting}
+              >
                 Close
               </button>
             </div>

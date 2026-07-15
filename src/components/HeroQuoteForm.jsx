@@ -1,5 +1,8 @@
 import { useState } from 'react';
 
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
 export default function HeroQuoteForm({ business }) {
   const [formData, setFormData] = useState({
     name: '',
@@ -14,6 +17,8 @@ export default function HeroQuoteForm({ business }) {
     message: '',
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -23,31 +28,53 @@ export default function HeroQuoteForm({ business }) {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setStatus({ type: '', message: '' });
+    setIsSubmitting(true);
 
-    const payload = {
-      name: formData.name,
-      phone: formData.phone,
-      service: formData.service,
-      place: formData.place,
-      message: formData.message,
-    };
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/leads`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          service: formData.service,
+          place: formData.place,
+          message: formData.message,
+          source: 'website-hero-form',
+        }),
+      });
 
-    console.log(payload);
+      const data = await response.json();
 
-    setStatus({
-      type: 'success',
-      message: 'Your request has been submitted successfully.',
-    });
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to submit form.');
+      }
 
-    setFormData({
-      name: '',
-      phone: '',
-      service: '',
-      place: '',
-      message: '',
-    });
+      setStatus({
+        type: 'success',
+        message: data.message || 'Your request has been submitted successfully.',
+      });
+
+      setFormData({
+        name: '',
+        phone: '',
+        service: '',
+        place: '',
+        message: '',
+      });
+    } catch (error) {
+      setStatus({
+        type: 'error',
+        message: error.message || 'Something went wrong.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -59,6 +86,9 @@ export default function HeroQuoteForm({ business }) {
             <h2>Get a quick quote for your pest control requirement</h2>
           </div>
 
+          <div className="hero-message-heading">
+            <h3>Send Us A Message!</h3>
+          </div>
 
           <form className="lead-form hero-inline-form" onSubmit={handleSubmit}>
             {status.message && (
@@ -138,8 +168,8 @@ export default function HeroQuoteForm({ business }) {
             </div>
 
             <div className="lead-form-actions hero-quote-actions">
-              <button type="submit" className="btn btn-primary">
-                Get Free Quote
+              <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+                {isSubmitting ? 'Submitting...' : 'Get Free Quote'}
               </button>
             </div>
           </form>

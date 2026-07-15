@@ -1795,3 +1795,61 @@ button {
   min-height: 120px;
   resize: vertical;
 }
+.testimonial-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.testimonial-popup {
+  position: relative;
+  width: min(100%, 460px);
+  border-radius: 20px;
+  padding: 24px;
+  background: #fff;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.2);
+}
+
+.testimonial-popup-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.06);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.testimonial-popup-eyebrow {
+  margin: 0 0 8px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0.7;
+}
+
+.testimonial-popup-title {
+  margin: 0 0 16px;
+  font-size: 22px;
+}
+
+.testimonial-popup-quote {
+  margin: 0 0 16px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.testimonial-popup-name {
+  margin: 0;
+  font-weight: 600;
+}

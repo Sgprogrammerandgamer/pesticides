@@ -11,11 +11,13 @@ import About from './components/About';
 import Footer from './components/Footer';
 import LeadPopup from './components/LeadPopup';
 import WhatsAppFloat from './components/WhatsAppFloat';
+import TestimonialPopup from './components/TestimonialPopup';
 import CallFloat from './components/CallFloat';
 import ClientSection from './components/ClientSection';
 import HeroQuoteForm from './components/HeroQuoteForm';
 
 export default function App() {
+    
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
@@ -228,6 +230,7 @@ export default function App() {
 
   return (
     <>
+    <TestimonialPopup />
       <Header
         business={business}
         openPopup={() => setIsPopupOpen(true)}
