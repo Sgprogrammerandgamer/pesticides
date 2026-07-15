@@ -33,44 +33,24 @@ export default function TestimonialPopup() {
   const [currentTestimonial, setCurrentTestimonial] = useState(testimonials[0]);
   const timerRef = useRef(null);
 
-  const getRandomDelay = () => Math.floor(Math.random() * 10000) + 1000;
-
-  const showRandomTestimonial = () => {
-    const randomItem =
-      testimonials[Math.floor(Math.random() * testimonials.length)];
-    setCurrentTestimonial(randomItem);
-    setIsVisible(true);
-  };
-
-  const schedulePopup = () => {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-    }
+  useEffect(() => {
+    const delay = Math.floor(Math.random() * 12000) + 1000;
 
     timerRef.current = setTimeout(() => {
-      showRandomTestimonial();
-    }, getRandomDelay());
-  };
-
-  useEffect(() => {
-    schedulePopup();
+      const randomItem = testimonials[Math.floor(Math.random() * testimonials.length)];
+      setCurrentTestimonial(randomItem);
+      setIsVisible(true);
+    }, delay);
 
     return () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
+      if (timerRef.current) clearTimeout(timerRef.current);
     };
   }, []);
-
-  const handleClose = () => {
-    setIsVisible(false);
-    schedulePopup();
-  };
 
   if (!isVisible) return null;
 
   return (
-    <div className="testimonial-popup-overlay" onClick={handleClose}>
+    <div className="testimonial-popup-overlay" onClick={() => setIsVisible(false)}>
       <div
         className="testimonial-popup"
         role="dialog"
@@ -81,7 +61,7 @@ export default function TestimonialPopup() {
         <button
           type="button"
           className="testimonial-popup-close"
-          onClick={handleClose}
+          onClick={() => setIsVisible(false)}
           aria-label="Close testimonial popup"
         >
           ×
