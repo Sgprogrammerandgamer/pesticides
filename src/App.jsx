@@ -230,7 +230,6 @@ export default function App() {
 
   return (
     <>
-    <TestimonialPopup />
       <Header
         business={business}
         openPopup={() => setIsPopupOpen(true)}

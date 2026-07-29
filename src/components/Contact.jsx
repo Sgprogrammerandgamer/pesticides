@@ -46,10 +46,10 @@ export default function Contact({ business }) {
                 <p>{business.location}</p>
               </div> */}
 
-              <div className="contact-row">
+              {/* <div className="contact-row">
                 <span className="contact-label">Service Area</span>
                 <p>{business.serviceArea}</p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

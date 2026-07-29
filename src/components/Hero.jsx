@@ -5,7 +5,7 @@ export default function Hero({ business, openPopup }) {
         <div className="hero-copy">
           <h1>
             <span className="highlighted-heading">Safe & Reliable</span> Pest Control
-            Services in Noida
+            Near You
           </h1>
 
           <p className="hero-text">
