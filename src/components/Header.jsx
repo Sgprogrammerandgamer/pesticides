@@ -38,13 +38,13 @@ export default function Header({ business, openPopup }) {
             <span />
           </button>
 
-          <button
+          {/* <button
             type="button"
             className="btn btn-secondary header-btn"
             onClick={openPopup}
           >
             Request Quote
-          </button>
+          </button> */}
         </div>
       </div>
 
