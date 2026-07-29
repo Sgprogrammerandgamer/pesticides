@@ -40,7 +40,7 @@ export default function App() {
       phoneRaw: '918340420745',
       whatsappNumber: '918340420745',
       logo: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/WhatsApp_Image_2026-07-26_at_11.01.24_AM-removebg-preview.png',
-      email: 'pestcontrolinquiry@gmail.com',
+      email: 'iquiry.expertpestcontrol.in',
       location: 'Plot no. 2302, Surat Nagar Phase-2, Gurgaon',
       serviceArea: 'Noida, Gurgaon, Delhi NCR and nearby service areas',
       apiBaseUrl: 'https://pesticides-backend-3efh.onrender.com',
