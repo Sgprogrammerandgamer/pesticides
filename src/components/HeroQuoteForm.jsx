@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+  import.meta.env.VITE_API_BASE_URL || 'https://pesticides-backend-3efh.onrender.com';
 
 export default function HeroQuoteForm({ business }) {
   const [formData, setFormData] = useState({
@@ -9,7 +9,6 @@ export default function HeroQuoteForm({ business }) {
     phone: '',
     service: '',
     place: '',
-    message: '',
   });
 
   const [status, setStatus] = useState({
@@ -44,7 +43,6 @@ export default function HeroQuoteForm({ business }) {
           phone: formData.phone,
           service: formData.service,
           place: formData.place,
-          message: formData.message,
           source: 'website-hero-form',
         }),
       });
@@ -65,7 +63,6 @@ export default function HeroQuoteForm({ business }) {
         phone: '',
         service: '',
         place: '',
-        message: '',
       });
     } catch (error) {
       setStatus({
@@ -151,18 +148,6 @@ export default function HeroQuoteForm({ business }) {
                   onChange={handleChange}
                   placeholder="Place"
                   aria-label="Place"
-                />
-              </div>
-
-              <div className="field field-full">
-                <textarea
-                  id="hero-message"
-                  name="message"
-                  rows="4"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Message"
-                  aria-label="Message"
                 />
               </div>
             </div>

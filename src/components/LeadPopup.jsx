@@ -9,7 +9,6 @@ export default function LeadPopup({ business, isOpen, onClose }) {
     phone: '',
     service: '',
     place: '',
-    message: '',
   });
 
   const [status, setStatus] = useState({
@@ -45,7 +44,6 @@ export default function LeadPopup({ business, isOpen, onClose }) {
           phone: formData.phone,
           service: formData.service,
           place: formData.place,
-          message: formData.message,
           source: 'website-popup',
         }),
       });
@@ -66,7 +64,6 @@ export default function LeadPopup({ business, isOpen, onClose }) {
         phone: '',
         service: '',
         place: '',
-        message: '',
       });
     } catch (error) {
       setStatus({
@@ -157,18 +154,6 @@ export default function LeadPopup({ business, isOpen, onClose }) {
                 onChange={handleChange}
                 placeholder="City"
                 aria-label="City"
-              />
-            </div>
-
-            <div className="field">
-              <textarea
-                id="popup-message"
-                name="message"
-                rows="3"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Message"
-                aria-label="Message"
               />
             </div>
 

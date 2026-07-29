@@ -27,7 +27,7 @@ export default function App() {
 
   const business = useMemo(
     () => ({
-      name: 'Expert Pesticides',
+      name: 'Expert Pest Control',
       alternateBrand: 'Expert Pesticides',
       tagline: "India's first safety-focused pest control service provider.",
       headline: 'Safe & Guaranteed Pest Control Services in Your City',
@@ -38,9 +38,9 @@ export default function App() {
         'We deliver effective pest management solutions using safe treatment methods and systematic inspections. Our trained professionals identify the root cause before recommending customized solutions. We focus on quality, professionalism, timely response and customer satisfaction.',
       phoneDisplay: '+91 83404 20745',
       phoneRaw: '918340420745',
-      whatsappNumber: '918809691313',
+      whatsappNumber: '918340420745',
       logo: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/WhatsApp_Image_2026-07-26_at_11.01.24_AM-removebg-preview.png',
-      email: 'akash13gpw@gmail.com',
+      email: 'pestcontrolinquiry@gmail.com',
       location: 'Plot no. 2302, Surat Nagar Phase-2, Gurgaon',
       serviceArea: 'Noida, Gurgaon, Delhi NCR and nearby service areas',
       apiBaseUrl: 'https://pesticides-backend-3efh.onrender.com',
