@@ -25,7 +25,7 @@ export default function Footer({ business }) {
           <div className="footer-links">
             <a href="#services">Services</a>
             <a href="#benefits">Benefits</a>
-            <a href="#industries">Industries</a>
+            <a href="#clients">Clients</a>
             <a href="#faq">FAQ</a>
             <a href="#contact">Contact</a>
           </div>
