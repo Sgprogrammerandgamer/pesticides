@@ -15,7 +15,7 @@ export default function Hero({ business, openPopup }) {
           <div className="hero-tags">
             <span>Safe treatment</span>
             <span>Fast support</span>
-            <span>Residential & commercial</span>
+            <span>Guaranteed Results</span>
           </div>
         </div>
 
@@ -55,7 +55,7 @@ export default function Hero({ business, openPopup }) {
             className="btn btn-primary hero-panel-btn"
             onClick={openPopup}
           >
-            Request a Quote
+            Book Now
           </button>
         </div>
       </div>

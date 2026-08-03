@@ -56,7 +56,7 @@ export default function App() {
           alt: 'Technician treating a termite bait station outdoors'
         },
         {
-          title: 'Pre-Construction Termite Control Treatment',
+          title: 'Pre-Construction Treatment',
           text: 'Preventive anti-termite treatment before construction to reduce future infestation risks and protect the property from the ground up.',
           image: 'https://raw.githubusercontent.com/Sgprogrammerandgamer/image-cdn/refs/heads/main/pre-construction.jpg',
           alt: 'Pre-construction termite control service image'
@@ -164,7 +164,7 @@ export default function App() {
         { value: 4.9, suffix: '', label: 'Customer Rating', decimals: 1 },
         { value: 20, suffix: '+', label: 'Years Experience' },
         { value: 23, suffix: '', label: 'Quality Parameters' },
-        { value: 3, suffix: ' Years', label: 'Warranty Support' }
+        { value: 3, suffix: ' Years', label: 'Long Lasting Protection' }
       ],
 
       faqs: [

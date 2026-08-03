@@ -5,13 +5,8 @@ export default function Contact({ business }) {
         <div className="contact-layout single-contact-layout">
           <div className="contact-copy full-contact-copy">
             <span className="eyebrow">Contact Us</span>
-            <h2>Get in touch for inspection, support, or service booking</h2>
-            <p>
-              Reach out to our team for residential and commercial pest control
-              assistance. Call us directly, message on WhatsApp, or use the quote
-              form to get started.
-            </p>
-
+            <h2>Get In Touch</h2>
+            
             <div className="contact-list">
               <div className="contact-row contact-row-highlight">
                 <span className="contact-label">Call Now</span>

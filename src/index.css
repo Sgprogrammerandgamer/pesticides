@@ -2082,3 +2082,96 @@ button {
   margin: 0;
   font-size: 14px;
 }
+/* Card layout — you already have a card radius/border on .services-section .service-card */
+.services-section .service-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Title styling above the card content */
+.services-section .service-card .service-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 12px 14px;  /* space inside title, not huge */
+  margin: 0;           /* no extra margin that would add white blocks */
+  text-align: left;
+}
+
+/* Image: full width, sits directly above buttons, no extra white padding */
+.services-section .service-card .service-image-wrap {
+  width: 100%;
+  padding-top: 60%;           /* aspect ratio only */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;                  /* IMPORTANT: no margin */
+  padding: 0;                 /* IMPORTANT: no padding */
+  /* no border-radius here; .service-card has 18px radius + overflow: hidden */
+}
+
+/* Rectangular bar of buttons directly attached to the image */
+.services-section .service-card .service-actions {
+  display: flex;
+  width: 100%;
+  margin: 0;                  /* no whitespace between image and buttons */
+  padding: 0;                 /* no internal white padding at the top */
+  border-top: 1px solid var(--border-soft, rgba(0,0,0,0.08));
+}
+
+/* Each button fills half of the bar, no gaps */
+.services-section .service-card .service-action-btn {
+  flex: 1 1 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #ffffff;
+  border: none;
+  margin: 0;                  /* no gap between left and right button */
+}
+
+/* Left rectangle: Call */
+.services-section .service-card .service-action-call {
+  background-color: #006494;  /* your brand color */
+}
+
+/* Right rectangle: WhatsApp */
+.services-section .service-card .service-action-whatsapp {
+  background-color: #25d366;
+}
+
+/* HARD OVERRIDE: make header logo bigger and visible */
+.site-header.header .brand-mark .brand-logo {
+  width: 100px !important;
+  height: 100px !important;
+  object-fit: contain;
+  display: block;
+}
+/* Footer logo row: white pill behind logo + name */
+.site-footer .footer-logo-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background-color: #ffffff;   /* white background */
+  border-radius: 999px;        /* pill shape */
+}
+
+/* Logo inside footer: slightly smaller than nav but still visible */
+.site-footer .footer-logo-row .brand-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Company name on white pill */
+.site-footer .footer-logo-row .footer-company-name h3 {
+  margin: 0;
+  color: #111111;             /* dark text on white */
+  font-size: 1rem;
+  font-weight: 600;
+}

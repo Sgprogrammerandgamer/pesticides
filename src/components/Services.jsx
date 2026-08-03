@@ -37,6 +37,10 @@ export default function Services({ business, openPopup }) {
               className={`service-card reveal-observe delay-${index % 4}`}
               key={service.title || index}
             >
+              {/* Title ABOVE the image */}
+              <h3 className="service-title">{service.title}</h3>
+
+              {/* Image */}
               <div
                 className="service-image-wrap"
                 style={{ backgroundImage: `url(${service.image})` }}
@@ -44,8 +48,24 @@ export default function Services({ business, openPopup }) {
                 aria-label={service.alt || service.title}
               />
 
-              <div className="service-copy">
-                <h3>{service.title}</h3>
+              {/* Buttons in place of the old title under the image */}
+              <div className="service-actions">
+                <a
+                  href={`tel:${business.phoneRaw}`}
+                  className="service-action-btn service-action-call"
+                >
+                  Call
+                </a>
+                <a
+                  href={`https://wa.me/${business.whatsappNumber}?text=Hello%20I%20need%20pest%20control%20support%20for%20${encodeURIComponent(
+                    service.title || ''
+                  )}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="service-action-btn service-action-whatsapp"
+                >
+                  WhatsApp
+                </a>
               </div>
             </article>
           ))}
